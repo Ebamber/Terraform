@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ActiveCardEffects: MonoBehaviour
+public class ActiveCardManager: MonoBehaviour
 {
     public void ActivateEffect(ActiveCard card)
     {

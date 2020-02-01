@@ -79,10 +79,8 @@
     <Compile Include="Assets\Scripts\Card\Old\RebelCard.cs" />
     <Compile Include="Assets\Scripts\Card\Old\ScientistCard.cs" />
     <Compile Include="Assets\Scripts\Card\PassiveCardManager.cs" />
-    <Compile Include="Assets\Scripts\Controller\Coordinate.cs" />
     <Compile Include="Assets\Scripts\Controller\GameManager.cs" />
     <Compile Include="Assets\Scripts\Controller\GameState.cs" />
-    <Compile Include="Assets\Scripts\Controller\ItemSelector.cs" />
     <Compile Include="Assets\Scripts\Controller\LandSelector.cs" />
     <Compile Include="Assets\Scripts\Controller\Player.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerNumber.cs" />

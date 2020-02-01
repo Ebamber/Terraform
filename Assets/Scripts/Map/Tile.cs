@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-[Serializable]
+[System.Serializable]
 public class Tile : MonoBehaviour
 {
     public TileState tileState;
@@ -11,18 +11,24 @@ public class Tile : MonoBehaviour
     public List<Tile> adjacencyList;
     public GameObject tileModel;
 
-    public Tile(GameObject tileModel)
+    private void Awake()
     {
-        gameObject.tag=
+        
+    }
+
+    public Tile SetTile(GameObject tileModel)
+    {
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
         tileState = TileState.UNCLAIMED;
         this.tileModel = tileModel;
+        return this;
     }
 
-    public Tile(TileState tileState)
+    public Tile SetTile(TileState tileState)
     {
         this.tileState = tileState;
+        return this;
     }
 
     public void ClaimTile(PlayerNumber player)

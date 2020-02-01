@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+    [System.Serializable]
+    public class Coordinate { 
+        public int x, y;
+    }
+
     public int mapConstraintX, mapConstraintY;
     public Coordinate coordinates;
     public GameObject playerPrefab;
@@ -50,12 +55,12 @@ public class Player : MonoBehaviour
                     break;
                 }
         }
-        this.coordinates = GenerateCoordinate();
+        //this.coordinates = GenerateCoordinate();
     }
-
+    /*
     public Coordinate GenerateCoordinate()
     {
-        return new Coordinate(mapConstraintX, mapConstraintY);
+        //return new Coordinate(mapConstraintX, mapConstraintY);
     }
-
+    */
 }

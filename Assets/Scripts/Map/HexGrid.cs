@@ -18,16 +18,13 @@ public class HexGrid : MonoBehaviour
     public GameObject defaultTilePrefab;
     public GameObject camera;
     private GameObject midpoint;
+    public GameObject emptyGO;
 
     void Awake()
     {
         //instantiate the grid to be used in the turn manager
         grid = new Tile[maxHeight, maxHeight];
-    }
-
-    private void Start()
-    {
-        currentHeight = minHeight-1;
+        currentHeight = minHeight - 1;
         CreateHexTileMap();
     }
 
@@ -52,25 +49,20 @@ public class HexGrid : MonoBehaviour
             //Debug.Log(xOffset * counter);
             for (int x = 0; x < currentHeight; x++)
             {
-                grid[z, x] = new Tile(defaultTilePrefab);
-                if (grid[z, x].tileState != TileState.UNAVAILABLE)
+                //grid[z, x] = new Tile(defaultTilePrefab);
+                grid[z, x] = Instantiate(defaultTilePrefab).AddComponent<Tile>().SetTile(defaultTilePrefab);
+                grid[z, x].tileState = TileState.UNCLAIMED;
+                if (z % 2 == 0)
                 {
-                    GameObject tile = Instantiate(grid[z, x].tileModel);
-                    if (z % 2 == 0)
-                    {
-                        tile.transform.position = new Vector3((x * xOffset) -xOffset * counter, 0, z * zOffset);
-                    }
-                    else
-                    {
-                        tile.transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
-                    }
-
-                    Tile t = new Tile(TileState.UNCLAIMED);
-
+                    grid[z, x].transform.position = new Vector3((x * xOffset) -xOffset * counter, 0, z * zOffset);
+                }
+                else
+                {
+                    grid[z, x].transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
                 }
             }
             for (int x = currentHeight; x < maxHeight; x++) {
-                grid[z, x] = new Tile(TileState.UNAVAILABLE);
+                grid[z, x] = Instantiate(emptyGO).AddComponent<Tile>().SetTile(TileState.UNAVAILABLE);
             }
             if ((z + 1) % 2 == 0 && z >= maxHeight / 2)
             {

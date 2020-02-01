@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PassiveCardManager))]
+[RequireComponent(typeof(LandSelector))]
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public List<Player> players;
+    public List<Player> players;
 
     public int turnCounter;
-    public int numberOfPlayers;
 
     public Player currentPlayer;
     public GameState state;
     public HexGrid hexGrid;
     public bool endOfTurn;
-
 
     private PassiveCardManager passiveCardEffectManager;
 
@@ -23,18 +22,17 @@ public class GameManager : MonoBehaviour
         passiveCardEffectManager = GetComponent<PassiveCardManager>();
         turnCounter = 0;
         state = GameState.START;
-        SetupBattle();
-
-        if ((numberOfPlayers < 2) || (numberOfPlayers > 4)) {
+        if ((players.Count < 2) || (players.Count > 4)) {
             Debug.LogWarning("Number of players is not within the correct range!");
-            numberOfPlayers = 2;
+            //numberOfPlayers = 2;
         }
+        SetupBattle();
     }
     private void SetupBattle() {
-        for (int i = 0; i  < numberOfPlayers; i++)
-        {   
-            Player player = new Player(i,hexGrid.maxHeight,hexGrid.maxHeight);
-            players.Add(player);
+        for (int i = 0; i  < players.Count; i++)
+        {
+
+            Player player = players[i];
             player.playerID = (PlayerNumber) i;
             player.playerPoints = 0;
             player.cardType = passiveCardEffectManager.AssignRandomCard(i);
@@ -43,12 +41,10 @@ public class GameManager : MonoBehaviour
         Tile[,] grid = hexGrid.grid;
         foreach (Player player in players)
         {
-            Tile tile = grid[player.coordinates.y, player.coordinates.x];
-            while (tile.tileState == TileState.UNAVAILABLE)
-            {
-                player.GenerateCoordinate();
-            }
-            Instantiate(player.playerPrefab, tile.transform);
+            Debug.Log($"Player Coordinates are {player.coordinates.x},{player.coordinates.y}");
+            Debug.Log($"Tile at {player.coordinates.x},{player.coordinates.y} is " + grid[player.coordinates.x, player.coordinates.y]);
+            
+            Tile tile = grid[player.coordinates.x, player.coordinates.y];
         }
         state = GameState.PLAYER_STATE;
         currentPlayer = players[0];
@@ -83,5 +79,9 @@ public class GameManager : MonoBehaviour
     public void EndTurn()
     {
         endOfTurn = false;
+    }
+
+    public void TryClaimTile() {
+
     }
 }

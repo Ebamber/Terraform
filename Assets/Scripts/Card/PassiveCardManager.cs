@@ -83,7 +83,7 @@ public class PassiveCardManager : MonoBehaviour
     /// <param name="playerNumber"></param>
     public CardType AssignRandomCard(int playerNumber)
     {
-        string card = randomCardArray.ElementAt(playerNumber + 1);
+        string card = randomCardArray.ElementAt(playerNumber);
         Debug.Log("Assigning "+card+" to player "+ playerNumber);
         return (CardType)System.Enum.Parse(typeof(CardType), card);
     }
