@@ -3,9 +3,10 @@ using System.Collections;
 
 public enum TerrainTypes 
 {
-    PLAINS,
-    CRATER,
-    WATER,
-    FERTILE,
-    MOUNTAIN
+    BASE = 0,
+    PLAINS = 1,
+    CRATER = 0,
+    WATER = 2,
+    FERTILE = 4,
+    MOUNTAIN = 0
 }

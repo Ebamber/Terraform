@@ -49,7 +49,7 @@ public class HexGrid : MonoBehaviour
             {
                 counter++;
             }
-            Debug.Log(xOffset * counter);
+            //Debug.Log(xOffset * counter);
             for (int x = 0; x < currentHeight; x++)
             {
                 grid[z, x] = new Tile(defaultTilePrefab);
@@ -64,6 +64,9 @@ public class HexGrid : MonoBehaviour
                     {
                         tile.transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
                     }
+
+                    Tile t = new Tile(TileState.UNCLAIMED);
+
                 }
             }
             for (int x = currentHeight; x < maxHeight; x++) {

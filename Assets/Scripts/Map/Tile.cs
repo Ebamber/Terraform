@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
 
     public Tile(GameObject tileModel)
     {
+        gameObject.tag=
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
         tileState = TileState.UNCLAIMED;
