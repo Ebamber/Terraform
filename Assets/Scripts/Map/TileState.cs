@@ -5,7 +5,6 @@ using UnityEngine;
 public enum TileState { 
     
     UNAVAILABLE,
-    UNEXPLORED,
     CLAIMED,
     IN_DEVELOPMENT,
     TERRAFORMED
