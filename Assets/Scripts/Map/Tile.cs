@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 
 [Serializable]
-public class Tile
+public class Tile : MonoBehaviour
 {
     public TileState tileState;
     public PlayerNumber tileOwner;
