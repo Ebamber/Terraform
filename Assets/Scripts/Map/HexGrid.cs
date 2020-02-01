@@ -13,7 +13,8 @@ public class HexGrid : MonoBehaviour
     public Tile[,] grid;
 
     public GameObject defaultTilePrefab;
-
+    public GameObject camera;
+    private GameObject midpoint;
 
     void Awake()
     {
@@ -41,6 +42,7 @@ public class HexGrid : MonoBehaviour
                 }
             }
         }
+        camera.transform.position = new Vector3(0, Mathf.Max(maxWidth,maxHeight) + 5, 0);
     }
 
 }

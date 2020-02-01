@@ -8,3 +8,6 @@ Assembly-CSharp.csproj
 Library/*
 obj/*
 Temp/*
+Assets/Scenes/SampleScene.unity
+Library/StateCache/Hierarchy/569e7a-mainStage.json
+Library/StateCache/SceneView/8436d4-mainStage.json
