@@ -8,3 +8,5 @@ Assembly-CSharp.csproj
 Library/*
 obj/*
 Temp/*
+Assembly-CSharp.csproj
+*.json
