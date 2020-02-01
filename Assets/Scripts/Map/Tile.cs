@@ -7,6 +7,7 @@ using System;
 public class Tile : MonoBehaviour
 {
     public TileState tileState;
+    public TerrainTypes terrainType;
     public PlayerNumber tileOwner;
     public List<Tile> adjacencyList;
     public GameObject tileModel;
@@ -21,6 +22,7 @@ public class Tile : MonoBehaviour
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
         tileState = TileState.UNCLAIMED;
+        terrainType = TerrainTypes.PLAINS;
         this.tileModel = tileModel;
         return this;
     }
@@ -31,36 +33,67 @@ public class Tile : MonoBehaviour
         return this;
     }
 
-    public void ClaimTile(PlayerNumber player)
+    public bool DevelopTile(Player player)
     {
-        if (IsAvailable() && CanDevelop())
+        if (IsClaimed() && player.playerID == tileOwner)
+        {
+            tileState = TileState.IN_DEVELOPMENT;
+            return true;
+        }
+        else if (IsInDevelopment() && player.playerID == tileOwner)
+        {
+            tileState = TileState.TERRAFORMED;
+            return true;
+        }
+        else return ClaimTile(player.playerID);
+    }
+
+    public bool ClaimTile(PlayerNumber player)
+    {
+
+        if (IsUnclaimed()) {
+            tileOwner = player;
+            tileState = TileState.CLAIMED;
+            return true;
+        }
+        else return ClaimEnemyTile(player);
+    }
+
+    public bool ClaimEnemyTile(PlayerNumber player)
+    {
+        if (IsAvailable() && CanDevelop() && tileOwner != player)
         {
             tileOwner = player;
             tileState = TileState.CLAIMED;
-        }
-    }
-
-    public bool CanDevelop()
-    {
-        if (tileState.Equals(TileState.CLAIMED) || tileState.Equals(TileState.IN_DEVELOPMENT))
-        {
             return true;
         }
         else return false;
     }
 
-    public void DevelopTile()
-    {
-        if (tileState.Equals(TileState.CLAIMED)){
-            tileState = TileState.IN_DEVELOPMENT;
-        }
-        else{
-            tileState = TileState.TERRAFORMED;
-        }
-    }
 
     public bool IsAvailable()
     {
         return !tileState.Equals(TileState.UNAVAILABLE);
     }
+
+    public bool CanDevelop()
+    {
+        return (tileState.Equals(TileState.UNCLAIMED) || tileState.Equals(TileState.CLAIMED) || tileState.Equals(TileState.IN_DEVELOPMENT));
+
+    }
+
+    private bool IsUnclaimed()
+    {
+        return tileState.Equals(TileState.UNCLAIMED);
+    }
+    private bool IsClaimed()
+    {
+        return tileState.Equals(TileState.CLAIMED);
+    }
+    private bool IsInDevelopment()
+    {
+        return tileState.Equals(TileState.IN_DEVELOPMENT);
+    }
+
+
 }

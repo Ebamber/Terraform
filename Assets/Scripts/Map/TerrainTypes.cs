@@ -7,6 +7,5 @@ public enum TerrainTypes
     PLAINS = 1,
     CRATER = 0,
     WATER = 2,
-    FERTILE = 4,
-    MOUNTAIN = 0
+    FERTILE = 4
 }

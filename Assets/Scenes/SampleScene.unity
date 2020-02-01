@@ -171,7 +171,7 @@ MonoBehaviour:
     y: 3
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 1
+  playerID: 2
   playerPoints: 0
   cardType: 0
 --- !u!1 &238651684
@@ -224,7 +224,7 @@ MonoBehaviour:
     y: 0
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 2
+  playerID: 3
   playerPoints: 0
   cardType: 0
 --- !u!1 &665191603
@@ -237,7 +237,6 @@ GameObject:
   m_Component:
   - component: {fileID: 665191604}
   - component: {fileID: 665191605}
-  - component: {fileID: 665191606}
   m_Layer: 0
   m_Name: Player4
   m_TagString: Untagged
@@ -278,17 +277,9 @@ MonoBehaviour:
     y: 2
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 3
+  playerID: 4
   playerPoints: 0
   cardType: 0
---- !u!33 &665191606
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665191603}
-  m_Mesh: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +422,7 @@ MonoBehaviour:
     y: 3
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 0
+  playerID: 1
   playerPoints: 0
   cardType: 0
 --- !u!1 &963194225
@@ -549,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bdc30484bd87c46a504b6cf3c3af2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 1895274289}
 --- !u!114 &1895274289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,7 +698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2139603278}
   m_Layer: 0
-  m_Name: Empty
+  m_Name: Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

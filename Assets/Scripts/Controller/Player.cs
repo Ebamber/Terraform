@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public Coordinate coordinates;
     public GameObject playerPrefab;
     public PlayerNumber playerID;
-    public long playerPoints;
+    public int playerPoints;
     public CardType cardType;
     public List<ActiveCard> cards;
 

@@ -41,38 +41,33 @@ public class GameManager : MonoBehaviour
         Tile[,] grid = hexGrid.grid;
         foreach (Player player in players)
         {
-            Debug.Log($"Player Coordinates are {player.coordinates.x},{player.coordinates.y}");
-            Debug.Log($"Tile at {player.coordinates.x},{player.coordinates.y} is " + grid[player.coordinates.x, player.coordinates.y]);
-            
             Tile tile = grid[player.coordinates.x, player.coordinates.y];
         }
         state = GameState.PLAYER_STATE;
         currentPlayer = players[0];
 
-        PlayerTurn();
     }
 
     private void PlayerTurn()
     {
         if (state != GameState.END)
         {
-            if (!endOfTurn)
+            int index = (int)currentPlayer.playerID + 1;
+            Debug.Log("current player index is " + index);
+            Debug.Log("we have this many players " +  players.Count);
+            if (index < players.Count)
             {
-                //do stuff and end turn
+                currentPlayer = players[index];
             }
             else
             {
-                int index = players.FindIndex(p => currentPlayer);
-                if (index < players.Count)
-                {
-                    currentPlayer = players[index + 1];
-                }
-                else
-                {
-                    currentPlayer = players[0];
-                }
-                PlayerTurn();
+                currentPlayer = players[0];
             }
+            Debug.Log("Current player is " + currentPlayer);
+            endOfTurn = false;
+        }
+        else {
+            //end the game
         }
     }
 
@@ -81,7 +76,11 @@ public class GameManager : MonoBehaviour
         endOfTurn = false;
     }
 
-    public void TryClaimTile() {
-
+    public void TryClaimTile(Tile tile) {
+        endOfTurn = tile.DevelopTile(currentPlayer);
+        if (endOfTurn) {
+            currentPlayer.playerPoints += (int) tile.terrainType;
+            PlayerTurn();
+        }
     }
 }
