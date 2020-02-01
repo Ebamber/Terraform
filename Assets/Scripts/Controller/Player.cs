@@ -5,28 +5,28 @@ public class Player : MonoBehaviour
 {
     public int xCoord, yCoord;
     public GameObject playerPrefab;
-    private PlayerNumber playerID { get; set; }
-    private long playerPoints { get; set; }
+    public PlayerNumber playerID;
+    public long playerPoints;
 
     public CardType cardType;
 
     public Player(int number) {
         switch (number) {
-            case 1: {
+            case 0: {
                 playerID = PlayerNumber.PLAYER_1;
                 break;
             }
-            case 2:
+            case 1:
             {
                 playerID = PlayerNumber.PLAYER_2;
                 break;
             }
-            case 3:
+            case 2:
             {
                 playerID = PlayerNumber.PLAYER_3;
                 break;
             }
-            case 4:
+            case 3:
             {
                 playerID = PlayerNumber.PLAYER_4;
                 break;
@@ -38,9 +38,5 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    public void SetCardType(CardType c){
-        cardType = c;
-    }
-
+    
 }

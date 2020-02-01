@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PassiveCardEffects : MonoBehaviour
+public class PassiveCardManager : MonoBehaviour
 {
     private string[] randomCardArray;
 
@@ -11,35 +11,66 @@ public class PassiveCardEffects : MonoBehaviour
         switch(card)
         {
             case CardType.ARCHAEOLOGIST:
-                ArchaeologistEffect();
-                break;
+                {
+                    ArchaeologistEffect();
+                    break;
+                }
+                
             case CardType.ASSASSIN:
-                AssassinEffect();
-                break;
+                {
+                    AssassinEffect();
+                    break;
+                }
+                
+                
             case CardType.DEFENDER:
-                DefenderEffect();
-                break;
+                {
+                    DefenderEffect();
+                    break;
+                }
+                
             case CardType.DEVELOPER:
-                DeveloperEffect();
-                break;
+                {
+                    DeveloperEffect();
+                    break;
+                }
+                
             case CardType.EXPLORER:
-                ExplorerEffect();
-                break;
+                {
+                    ExplorerEffect();
+                    break;
+                }
+                
             case CardType.LANDMAGNATE:
-                LandMagnateEffect();
-                break;
+                {
+                    LandMagnateEffect();
+                    break;
+                }
+                
             case CardType.MINER:
-                MinerEffect();
-                break;
+                {
+                    MinerEffect();
+                    break;
+                }
+                
             case CardType.POLITICIAN:
-                PoliticianEffect();
-                break;
+                {
+                    PoliticianEffect();
+                    break;
+                }
+                
             case CardType.REBEL:
-                RebelEffect();
-                break;
+                {
+                    RebelEffect();
+                    break;
+                }
+                
             case CardType.SCIENTIST:
-                ScientistEffect();
-                break;
+                {
+                    ScientistEffect();
+                    break;
+                }
+                
             default:
                 break;
         }
@@ -52,8 +83,8 @@ public class PassiveCardEffects : MonoBehaviour
     /// <param name="playerNumber"></param>
     public CardType AssignRandomCard(int playerNumber)
     {
-        string card = randomCardArray.ElementAt(playerNumber);
-        Debug.Log(card);
+        string card = randomCardArray.ElementAt(playerNumber + 1);
+        Debug.Log("Assigning "+card+" to player "+ playerNumber);
         return (CardType)System.Enum.Parse(typeof(CardType), card);
     }
 
@@ -96,7 +127,7 @@ public class PassiveCardEffects : MonoBehaviour
     {
     }
 
-    public void Start()
+    public void Awake()
     {
         randomCardArray = System.Enum.GetNames(typeof(CardType)).OrderBy(x => Random.value).ToArray();
     }
