@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -145,8 +146,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -303,7 +305,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2104508681}
-  - component: {fileID: 2104508680}
   - component: {fileID: 2104508679}
   m_Layer: 0
   m_Name: TileGenerator
@@ -324,22 +325,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab339b116f1dcc409e22e8bcf437cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 12
-  y: 12
---- !u!114 &2104508680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104508678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f79716e3f869624c8fd7f3ee4b49013, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 2104508679}
-  defaultTileModel: {fileID: 4739385700338712450, guid: 6441ff637a8661b48a97b8bdcbe039cb,
+  maxWidth: 24
+  maxHeight: 24
+  xOffset: 1.87
+  zOffset: 1.58
+  defaultTilePrefab: {fileID: 4739385700338712450, guid: 6441ff637a8661b48a97b8bdcbe039cb,
     type: 3}
 --- !u!4 &2104508681
 Transform:

@@ -1,0 +1,10 @@
+*.dll
+*.bin
+*.log
+*.json
+*.ide
+Assembly-CSharp.csproj
+.vs/*
+Library/*
+obj/*
+Temp/*
