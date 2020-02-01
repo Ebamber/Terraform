@@ -42,6 +42,7 @@ public class HexGrid : MonoBehaviour
                 }
             }
         }
+        //dynamically place camera according to grid size to fit all pieces (breaks when over 50*50, but tiles become too small to see at that point anyway)
         camera.transform.position = new Vector3(0, Mathf.Max(maxWidth,maxHeight) + 5, 0);
     }
 

@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    private int turnCounter { get; set; }
-    private  int numberOfPlayers { get; set; }
+    public int turnCounter;
+    public int numberOfPlayers;
 
     void Awake() {
         turnCounter = 0;
