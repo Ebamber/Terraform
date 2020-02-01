@@ -4,7 +4,7 @@ using System;
 
 public class HexGrid : MonoBehaviour
 {
-    public int maxWidth,maxHeight;
+    public int maxHeight;
     public int currentHeight;
     public int minHeight;
     public int delta;
@@ -22,7 +22,7 @@ public class HexGrid : MonoBehaviour
     void Awake()
     {
         //instantiate the grid to be used in the turn manager
-        grid = new Tile[maxHeight, maxWidth];
+        grid = new Tile[maxHeight, maxHeight];
     }
 
     private void Start()
@@ -65,6 +65,9 @@ public class HexGrid : MonoBehaviour
                         tile.transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
                     }
                 }
+            }
+            for (int x = currentHeight; x < maxHeight; x++) {
+                grid[z, x] = new Tile(TileState.UNAVAILABLE);
             }
             if ((z + 1) % 2 == 0 && z >= maxHeight / 2)
             {

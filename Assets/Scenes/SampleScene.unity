@@ -296,6 +296,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60, y: 45, z: 0}
+--- !u!1 &1895274287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1895274290}
+  - component: {fileID: 1895274289}
+  - component: {fileID: 1895274288}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1895274288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895274287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a990bdbda11f00848a1be100966f7628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnCounter: 0
+  players: []
+  currentPlayer: 4
+  manager: {fileID: 1895274289}
+--- !u!114 &1895274289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895274287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843dc4a8e2d81424cb85b4626c1b2c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
+  numberOfPlayers: 0
+  state: 0
+  hexGrid: {fileID: 2104508679}
+--- !u!4 &1895274290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895274287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.4386106, y: 1.385698, z: 4.6720686}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2104508678
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,8 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab339b116f1dcc409e22e8bcf437cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWidth: 20
-  maxHeight: 9
+  maxHeight: 7
   currentHeight: 0
   minHeight: 4
   delta: 0

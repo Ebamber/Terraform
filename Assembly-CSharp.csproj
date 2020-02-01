@@ -62,24 +62,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Card\ArchaeologistCard.cs" />
-    <Compile Include="Assets\Scripts\Card\AssassinCard.cs" />
-    <Compile Include="Assets\Scripts\Card\CardFactory.cs" />
+    <Compile Include="Assets\Scripts\Card\ActiveCard.cs" />
+    <Compile Include="Assets\Scripts\Card\ActiveCardManager.cs" />
+    <Compile Include="Assets\Scripts\Card\ActiveCardType.cs" />
     <Compile Include="Assets\Scripts\Card\CardType.cs" />
-    <Compile Include="Assets\Scripts\Card\DefenderCard.cs" />
-    <Compile Include="Assets\Scripts\Card\DeveloperCard.cs" />
-    <Compile Include="Assets\Scripts\Card\ExplorerCard.cs" />
-    <Compile Include="Assets\Scripts\Card\LandMagnateCard.cs" />
-    <Compile Include="Assets\Scripts\Card\MinerCard.cs" />
-    <Compile Include="Assets\Scripts\Card\PlayerCard.cs" />
-    <Compile Include="Assets\Scripts\Card\PoliticianCard.cs" />
-    <Compile Include="Assets\Scripts\Card\RebelCard.cs" />
-    <Compile Include="Assets\Scripts\Card\ScientistCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\ArchaeologistCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\AssassinCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\CardFactory.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\DefenderCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\DeveloperCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\ExplorerCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\LandMagnateCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\MinerCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\PlayerCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\PoliticianCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\RebelCard.cs" />
+    <Compile Include="Assets\Scripts\Card\Old\ScientistCard.cs" />
+    <Compile Include="Assets\Scripts\Card\PassiveCardManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\Coordinate.cs" />
     <Compile Include="Assets\Scripts\Controller\GameManager.cs" />
     <Compile Include="Assets\Scripts\Controller\GameState.cs" />
+    <Compile Include="Assets\Scripts\Controller\ItemSelector.cs" />
+    <Compile Include="Assets\Scripts\Controller\LandSelector.cs" />
     <Compile Include="Assets\Scripts\Controller\Player.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerNumber.cs" />
-    <Compile Include="Assets\Scripts\Controller\TurnManager.cs" />
     <Compile Include="Assets\Scripts\Map\HexGrid.cs" />
     <Compile Include="Assets\Scripts\Map\TerrainTypes.cs" />
     <Compile Include="Assets\Scripts\Map\Tile.cs" />

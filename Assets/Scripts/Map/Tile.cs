@@ -19,6 +19,11 @@ public class Tile : MonoBehaviour
         this.tileModel = tileModel;
     }
 
+    public Tile(TileState tileState)
+    {
+        this.tileState = tileState;
+    }
+
     public void ClaimTile(PlayerNumber player)
     {
         if (IsAvailable() && CanDevelop())

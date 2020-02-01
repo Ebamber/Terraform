@@ -7,10 +7,13 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public List<Player> players;
 
+    public int turnCounter;
     public int numberOfPlayers;
 
-    public PlayerNumber currentPlayer;
+    public Player currentPlayer;
     public GameState state;
+    public HexGrid hexGrid;
+    public bool endOfTurn;
 
 
     private PassiveCardManager passiveCardEffectManager;
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start() {
 
         passiveCardEffectManager = GetComponent<PassiveCardManager>();
+        turnCounter = 0;
         state = GameState.START;
         SetupBattle();
 
@@ -29,11 +33,55 @@ public class GameManager : MonoBehaviour
     private void SetupBattle() {
         for (int i = 0; i  < numberOfPlayers; i++)
         {   
-            Player player = new Player(i);
+            Player player = new Player(i,hexGrid.maxHeight,hexGrid.maxHeight);
             players.Add(player);
             player.playerID = (PlayerNumber) i;
             player.playerPoints = 0;
             player.cardType = passiveCardEffectManager.AssignRandomCard(i);
         }
+        turnCounter++;
+        Tile[,] grid = hexGrid.grid;
+        foreach (Player player in players)
+        {
+            Tile tile = grid[player.coordinates.y, player.coordinates.x];
+            while (tile.tileState == TileState.UNAVAILABLE)
+            {
+                player.GenerateCoordinate();
+            }
+            Instantiate(player.playerPrefab, tile.transform);
+        }
+        state = GameState.PLAYER_STATE;
+        currentPlayer = players[0];
+
+        PlayerTurn();
+    }
+
+    private void PlayerTurn()
+    {
+        if (state != GameState.END)
+        {
+            if (!endOfTurn)
+            {
+                //do stuff and end turn
+            }
+            else
+            {
+                int index = players.FindIndex(p => currentPlayer);
+                if (index < players.Count)
+                {
+                    currentPlayer = players[index + 1];
+                }
+                else
+                {
+                    currentPlayer = players[0];
+                }
+                PlayerTurn();
+            }
+        }
+    }
+
+    public void EndTurn()
+    {
+        endOfTurn = false;
     }
 }
