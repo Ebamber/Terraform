@@ -6,15 +6,18 @@ public class GameManager : MonoBehaviour
 {
 
     public int turnCounter;
-    public int numberOfPlayers;
+    public List<Player> players;
+
+    public PlayerNumber currentPlayer;
+    public GameState state;
 
     void Awake() {
         turnCounter = 0;
-        numberOfPlayers = 0;
+        state = GameState.START;
+        SetupBattle();
     }
 
-    void Update()
-    {
-        
+    private void SetupBattle() {
+        //gameObject.AddComponent< new CardFactory().factory(players[0].cardType);
     }
 }

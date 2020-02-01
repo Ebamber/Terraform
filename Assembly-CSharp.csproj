@@ -62,44 +62,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Card\ArchaeologistCard.cs" />
+    <Compile Include="Assets\Scripts\Card\AssassinCard.cs" />
+    <Compile Include="Assets\Scripts\Card\CardFactory.cs" />
+    <Compile Include="Assets\Scripts\Card\CardType.cs" />
+    <Compile Include="Assets\Scripts\Card\DefenderCard.cs" />
+    <Compile Include="Assets\Scripts\Card\DeveloperCard.cs" />
+    <Compile Include="Assets\Scripts\Card\ExplorerCard.cs" />
+    <Compile Include="Assets\Scripts\Card\LandMagnateCard.cs" />
+    <Compile Include="Assets\Scripts\Card\MinerCard.cs" />
+    <Compile Include="Assets\Scripts\Card\PlayerCard.cs" />
+    <Compile Include="Assets\Scripts\Card\PoliticianCard.cs" />
+    <Compile Include="Assets\Scripts\Card\RebelCard.cs" />
+    <Compile Include="Assets\Scripts\Card\ScientistCard.cs" />
     <Compile Include="Assets\Scripts\Controller\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\GameState.cs" />
     <Compile Include="Assets\Scripts\Controller\Player.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerNumber.cs" />
     <Compile Include="Assets\Scripts\Controller\TurnManager.cs" />
     <Compile Include="Assets\Scripts\Map\HexGrid.cs" />
-    <Compile Include="Assets\Scripts\Map\HexTileGridGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\TerrainTypes.cs" />
     <Compile Include="Assets\Scripts\Map\Tile.cs" />
     <Compile Include="Assets\Scripts\Map\TileState.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Edward/Desktop/My Work/Terraforming/Terraform/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Edward/Desktop/My Work/Terraform/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
