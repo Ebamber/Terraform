@@ -15,22 +15,26 @@ public class Tile : MonoBehaviour
     {
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
+        tileState = TileState.UNCLAIMED;
         this.tileModel = tileModel;
     }
 
     public void ClaimTile(PlayerNumber player)
     {
-        tileOwner = player;
-        tileState = TileState.CLAIMED;
+        if (IsAvailable() && CanDevelop())
+        {
+            tileOwner = player;
+            tileState = TileState.CLAIMED;
+        }
     }
 
     public bool CanDevelop()
     {
         if (tileState.Equals(TileState.CLAIMED) || tileState.Equals(TileState.IN_DEVELOPMENT))
         {
-            return false;
+            return true;
         }
-        else return true;
+        else return false;
     }
 
     public void DevelopTile()
@@ -41,5 +45,10 @@ public class Tile : MonoBehaviour
         else{
             tileState = TileState.TERRAFORMED;
         }
-    } 
+    }
+
+    public bool IsAvailable()
+    {
+        return !tileState.Equals(TileState.UNAVAILABLE);
+    }
 }
