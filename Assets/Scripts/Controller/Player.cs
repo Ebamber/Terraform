@@ -3,9 +3,12 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-
+    public int xCoord, yCoord;
+    public GameObject playerPrefab;
     private PlayerNumber playerID { get; set; }
     private long playerPoints { get; set; }
+
+    public CardType cardType;
 
     public Player(int number) {
         switch (number) {
