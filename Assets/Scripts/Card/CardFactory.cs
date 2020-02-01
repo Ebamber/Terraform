@@ -5,43 +5,45 @@ using UnityEngine;
 
 
 public class CardFactory
-{
+{/*
    public PlayerCard factory(CardType cardType) {
         switch (cardType) {
             case CardType.ARCHAEOLOGIST: {
-                return new ArchaeologistCard();
+                //return new ArchaeologistCard();
             }
             case CardType.ASSASSIN: {
-                    return new AssassinCard();
+                    //return new AssassinCard();
                 }
             case CardType.DEFENDER: {
-                    return new DefenderCard();
+                    //return new DefenderCard();
                 }
             case CardType.DEVELOPER: {
-                    return new DeveloperCard();
+                    //return new DeveloperCard();
                 }
             case CardType.EXPLORER: {
-                    return new ExplorerCard();
+                   // return new ExplorerCard();
                 }
             case CardType.LANDMAGNATE: {
-                    return new LandMagnate();
+                   // return new LandMagnate();
                 }
             case CardType.MINER: {
-                    return new MinerCard();
+                    //return new MinerCard();
                 }
             case CardType.POLITICIAN: {
-                    return new PoliticianCard();
+                   // return new PoliticianCard();
                 }
             case CardType.REBEL: {
-                    return new RebelCard();
+                  //  return new RebelCard();
                 }
             case CardType.SCIENTIST: {
-                    return new ScientistCard();
+                  //  return new ScientistCard();
                 }
-            default: {
+        default: {
                     return null;
-                }
+               }
+                
         }
    }
+        */
 
 }

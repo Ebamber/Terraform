@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 705507994}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -265,8 +265,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 70
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -326,10 +326,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWidth: 20
-  maxHeight: 20
+  maxHeight: 9
+  currentHeight: 0
+  minHeight: 4
+  delta: 0
   xOffset: 1.8
   zOffset: 1.55
-  defaultTilePrefab: {fileID: 4739385700338712450, guid: 6441ff637a8661b48a97b8bdcbe039cb,
+  defaultTilePrefab: {fileID: -927199367670048503, guid: 1661d085950bfa74aa34e4cfdbbcac11,
     type: 3}
   camera: {fileID: 963194225}
 --- !u!4 &2104508681
