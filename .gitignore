@@ -10,6 +10,7 @@ obj/*
 Temp/*
 Assembly-CSharp.csproj
 *.json
+<<<<<<< HEAD
 *.pdb
 *.dll
 *.pdb
@@ -57,3 +58,5 @@ obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
 obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
 Temp/ProcessJobs/ab30c7bcae888f8a20ac9ec5bfbfa3a6.bakert
 Terraform.sln
+=======
+>>>>>>> parent of 7cc6b4b... Tile claiming and stealing, terrain bonuses

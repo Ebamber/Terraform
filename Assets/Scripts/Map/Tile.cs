@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     public List<Tile> adjacencyList;
     public GameObject tileModel;
 <<<<<<< HEAD
+<<<<<<< HEAD
     public int currentPoints;
     public HexGrid grid;
     public int totalPointValue;
@@ -26,6 +27,12 @@ public class Tile : MonoBehaviour
     {
         
 >>>>>>> parent of 778a026... Changing Terrain Types
+=======
+
+    private void Awake()
+    {
+        
+>>>>>>> parent of 7cc6b4b... Tile claiming and stealing, terrain bonuses
     }
 
     public Tile SetTile(GameObject tileModel)
@@ -48,14 +55,7 @@ public class Tile : MonoBehaviour
     {
         if (IsClaimed() && player.playerID == tileOwner)
         {
-            if (!terrainType.Equals(TerrainTypes.WATER))
-            {
-                tileState = TileState.IN_DEVELOPMENT;
-            }
-            //special case for water tile
-            else {
-                tileState = TileState.TERRAFORMED;
-            }
+            tileState = TileState.IN_DEVELOPMENT;
             return true;
         }
         else if (IsInDevelopment() && player.playerID == tileOwner)
@@ -68,6 +68,7 @@ public class Tile : MonoBehaviour
 
     public bool ClaimTile(PlayerNumber player)
     {
+
         if (IsUnclaimed()) {
             tileOwner = player;
             tileState = TileState.CLAIMED;
@@ -76,26 +77,17 @@ public class Tile : MonoBehaviour
         else return ClaimEnemyTile(player);
     }
 
-    public int CalculateBonusPoints()
-    {
-        if (terrainType.Equals(TerrainTypes.FERTILE) && tileState.Equals(TileState.TERRAFORMED)){
-            return 2;
-        }
-        else if (terrainType.Equals(TerrainTypes.FERTILE) && tileState.Equals(TileState.TERRAFORMED))
-        {
-            return (int) tileState; //this represents the points from the development stage that were skipped
-        }
-            return 0;
-    }
-
     public bool ClaimEnemyTile(PlayerNumber player)
     {
         if (IsAvailable() && CanDevelop() && tileOwner != player)
         {
+            tileOwner = player;
+            tileState = TileState.CLAIMED;
             return true;
         }
         else return false;
     }
+
 
     public bool IsAvailable()
     {
