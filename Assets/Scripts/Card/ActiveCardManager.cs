@@ -19,9 +19,19 @@ public class ActiveCardManager: MonoBehaviour
                         MassProductionEffect();
                         break;
                     }
-                case ActiveCardType.SABOTAGE:
+                case ActiveCardType.RESISTANCE:
                     {
-                        SabotageEffect();
+                        ResistanceEffect();
+                        break;
+                    }
+                case ActiveCardType.TAKEOVER:
+                    {
+                        TakeoverEffect();
+                        break;
+                    }
+                case ActiveCardType.TELEPORT:
+                    {
+                        TeleportEffect();
                         break;
                     }
                 default:
@@ -33,5 +43,7 @@ public class ActiveCardManager: MonoBehaviour
 
     public void BushfireEffect() { }
     public void MassProductionEffect() { }
-    public void SabotageEffect() { }
+    public void ResistanceEffect() { }
+    public void TakeoverEffect() { }
+    public void TeleportEffect() { }
 }

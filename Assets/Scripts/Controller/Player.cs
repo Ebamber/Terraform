@@ -22,7 +22,9 @@ public class Player : MonoBehaviour
         cards = new List<ActiveCard>();
         cards.Add(new ActiveCard(ActiveCardType.BUSHFIRE, this));
         cards.Add(new ActiveCard(ActiveCardType.MASS_PRODUCTION, this));
-        cards.Add(new ActiveCard(ActiveCardType.SABOTAGE, this));
+        cards.Add(new ActiveCard(ActiveCardType.RESISTANCE, this));
+        cards.Add(new ActiveCard(ActiveCardType.TAKEOVER, this));
+        cards.Add(new ActiveCard(ActiveCardType.TELEPORT, this));
         this.mapConstraintX = mapConstraintX;
         this.mapConstraintY = mapConstraintY;
         switch (number)
