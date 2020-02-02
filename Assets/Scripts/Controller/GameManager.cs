@@ -124,7 +124,6 @@ public class GameManager : MonoBehaviour
                 returnable = player;
             }
         }
-        Debug.Log("CLAIM FROM PLAYER " + playerID);
         return returnable;
     }
 
