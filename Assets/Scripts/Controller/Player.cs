@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public int playerPoints;
     public CardType cardType;
     public List<ActiveCard> cards;
+    public List<Tile> ownedTiles;
 
     public Player(int number, int mapConstraintX, int mapConstraintY)
     {
