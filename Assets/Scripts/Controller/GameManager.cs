@@ -53,8 +53,6 @@ public class GameManager : MonoBehaviour
         if (state != GameState.END)
         {
             int index = (int)currentPlayer.playerID + 1;
-            Debug.Log("current player index is " + index);
-            Debug.Log("we have this many players " +  players.Count);
             if (index < players.Count)
             {
                 currentPlayer = players[index];
@@ -79,7 +77,32 @@ public class GameManager : MonoBehaviour
     public void TryClaimTile(Tile tile) {
         endOfTurn = tile.DevelopTile(currentPlayer);
         if (endOfTurn) {
-            currentPlayer.playerPoints += (int) tile.terrainType;
+
+            //handle tile stealing (reclaiming)
+            if (tile.ClaimEnemyTile(currentPlayer.playerID))
+            {
+                ///perform changeover
+                Debug.Log("points stolen: " + tile.totalPointValue);
+                Player oldPlayer = players[((int)tile.tileOwner)];
+                currentPlayer.playerPoints += tile.totalPointValue;
+                oldPlayer.playerPoints -= tile.totalPointValue;
+                tile.tileOwner = currentPlayer.playerID;
+            }
+            //handle tile claiming and development
+            else
+            {
+                currentPlayer.playerPoints += (int)tile.tileState;
+                tile.totalPointValue += (int)tile.tileState;
+                //bonus point calculation
+                int bonusPoints = tile.CalculateBonusPoints();
+                tile.totalPointValue += bonusPoints;
+                currentPlayer.playerPoints += bonusPoints;
+            }
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                Debug.Log("player " + i + " has points " + players[i].playerPoints);
+            }
             PlayerTurn();
         }
     }

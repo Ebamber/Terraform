@@ -21,13 +21,15 @@ public class Tile : MonoBehaviour
         totalPointValue = 0;
     }
 
-    public Tile SetTile(GameObject tileModel)
+    public Tile SetTile(HexGrid grid, GameObject tileModel)
     {
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
-        tileState = TileState.UNCLAIMED;
+        tileState = TileState.TERRAFORMED;
         terrainType = TerrainTypes.PLAINS;
         this.tileModel = tileModel;
+        currentPoints = 0;
+        this.grid = grid;
         return this;
     }
 
@@ -41,7 +43,14 @@ public class Tile : MonoBehaviour
     {
         if (IsClaimed() && player.playerID == tileOwner)
         {
-            tileState = TileState.IN_DEVELOPMENT;
+            if (!terrainType.Equals(TerrainTypes.WATER))
+            {
+                tileState = TileState.IN_DEVELOPMENT;
+            }
+            //special case for water tile
+            else {
+                tileState = TileState.TERRAFORMED;
+            }
             return true;
         }
         else if (IsInDevelopment() && player.playerID == tileOwner)
@@ -54,7 +63,6 @@ public class Tile : MonoBehaviour
 
     public bool ClaimTile(PlayerNumber player)
     {
-
         if (IsUnclaimed()) {
             tileOwner = player;
             tileState = TileState.CLAIMED;
@@ -63,17 +71,26 @@ public class Tile : MonoBehaviour
         else return ClaimEnemyTile(player);
     }
 
+    public int CalculateBonusPoints()
+    {
+        if (terrainType.Equals(TerrainTypes.FERTILE) && tileState.Equals(TileState.TERRAFORMED)){
+            return 2;
+        }
+        else if (terrainType.Equals(TerrainTypes.FERTILE) && tileState.Equals(TileState.TERRAFORMED))
+        {
+            return (int) tileState; //this represents the points from the development stage that were skipped
+        }
+            return 0;
+    }
+
     public bool ClaimEnemyTile(PlayerNumber player)
     {
         if (IsAvailable() && CanDevelop() && tileOwner != player)
         {
-            tileOwner = player;
-            tileState = TileState.CLAIMED;
             return true;
         }
         else return false;
     }
-
 
     public bool IsAvailable()
     {
@@ -99,5 +116,12 @@ public class Tile : MonoBehaviour
         return tileState.Equals(TileState.IN_DEVELOPMENT);
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Tile"))
+        {
+            Tile otherTile = other.GetComponent<Tile>();
+            otherTile.adjacencyList.Add(this);
+        }
+    }
 }

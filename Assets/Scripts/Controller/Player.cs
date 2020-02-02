@@ -16,15 +16,14 @@ public class Player : MonoBehaviour
     public int playerPoints;
     public CardType cardType;
     public List<ActiveCard> cards;
+    public List<Tile> ownedTiles;
 
     public Player(int number, int mapConstraintX, int mapConstraintY)
     {
         cards = new List<ActiveCard>();
         cards.Add(new ActiveCard(ActiveCardType.BUSHFIRE, this));
         cards.Add(new ActiveCard(ActiveCardType.MASS_PRODUCTION, this));
-        cards.Add(new ActiveCard(ActiveCardType.RESISTANCE, this));
-        cards.Add(new ActiveCard(ActiveCardType.TAKEOVER, this));
-        cards.Add(new ActiveCard(ActiveCardType.TELEPORT, this));
+        cards.Add(new ActiveCard(ActiveCardType.SABOTAGE, this));
         this.mapConstraintX = mapConstraintX;
         this.mapConstraintY = mapConstraintY;
         switch (number)

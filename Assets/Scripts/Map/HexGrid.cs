@@ -9,6 +9,10 @@ public class HexGrid : MonoBehaviour
     public int currentHeight;
     public int minHeight;
     public int delta;
+    public GameManager manager;
+
+    public int numberOfWaters;
+    public int numberOfFertiles;
 
     [Range(0f,2f)]
     public float xOffset, zOffset;
@@ -21,10 +25,7 @@ public class HexGrid : MonoBehaviour
     private GameObject midpoint;
     public GameObject emptyGO;
 
-    public GameManager manager;
-
-    public int numberOfFertiles;
-    public int numberOfWaters;
+    private bool instantiatedAdjacency = false;
 
     void Awake()
     {
@@ -32,6 +33,26 @@ public class HexGrid : MonoBehaviour
         grid = new Tile[maxHeight, maxHeight];
         currentHeight = minHeight - 1;
         CreateHexTileMap();
+    }
+    
+    //Fix this if we can at some stage
+    //Set a random tile near player base as a crater
+    private void Update()
+    {
+        if (!instantiatedAdjacency) {
+            bool instantiateIt = true;
+            foreach (Tile tile in grid) {
+                if (tile.tileState != TileState.UNAVAILABLE)
+                {
+                    instantiateIt = instantiateIt & tile.adjacencyList.Count > 0;
+                }
+            }
+            if (instantiateIt) {
+                CreateCraters();
+                CreateWaters();
+                instantiatedAdjacency = true;
+            }
+        }
     }
 
     public void CreateHexTileMap()
@@ -56,8 +77,9 @@ public class HexGrid : MonoBehaviour
             for (int x = 0; x < currentHeight; x++)
             {
                 //grid[z, x] = new Tile(defaultTilePrefab);
-                grid[z, x] = Instantiate(defaultTilePrefab).AddComponent<Tile>().SetTile(defaultTilePrefab);
+                grid[z, x] = Instantiate(defaultTilePrefab).AddComponent<Tile>().SetTile(this, defaultTilePrefab);
                 grid[z, x].tileState = TileState.UNCLAIMED;
+                grid[z, x].name = $"{x},{z}";
                 if (z % 2 == 0)
                 {
                     grid[z, x].transform.position = new Vector3((x * xOffset) -xOffset * counter, 0, z * zOffset);
@@ -69,6 +91,7 @@ public class HexGrid : MonoBehaviour
             }
             for (int x = currentHeight; x < maxHeight; x++) {
                 grid[z, x] = Instantiate(emptyGO).AddComponent<Tile>().SetTile(TileState.UNAVAILABLE);
+                grid[z, x].name = $"Unreachable-{x},{z}";
             }
             if ((z + 1) % 2 == 0 && z >= maxHeight / 2)
             {
@@ -79,6 +102,7 @@ public class HexGrid : MonoBehaviour
         {
             Player.Coordinate coordinates = player.coordinates;
             Tile baseTile = grid[coordinates.x, coordinates.y];
+            Debug.Log(baseTile);
             baseTile.tileState = TileState.UNAVAILABLE;
             baseTile.tileOwner = player.playerID;
             baseTile.terrainType = TerrainTypes.BASE;
@@ -94,7 +118,7 @@ public class HexGrid : MonoBehaviour
         int x = UnityEngine.Random.Range(0, grid.GetLength(1) - 1);
         int y = UnityEngine.Random.Range(0, grid.GetLength(0) - 1);
 
-        if (grid[y, x].tileState == TileState.UNAVAILABLE) {
+        if (grid[y, x].tileState == TileState.UNAVAILABLE ) {
             return RandomTile();
         }
         else
