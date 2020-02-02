@@ -11,10 +11,12 @@ public class Tile : MonoBehaviour
     public PlayerNumber tileOwner;
     public List<Tile> adjacencyList;
     public GameObject tileModel;
+    public int totalPointValue;
+    public bool stolen;
 
     private void Awake()
     {
-        
+        totalPointValue = 0;
     }
 
     public Tile SetTile(GameObject tileModel)
@@ -37,7 +39,14 @@ public class Tile : MonoBehaviour
     {
         if (IsClaimed() && player.playerID == tileOwner)
         {
-            tileState = TileState.IN_DEVELOPMENT;
+            if (!terrainType.Equals(TerrainTypes.WATER))
+            {
+                tileState = TileState.IN_DEVELOPMENT;
+            }
+            //special case for water tile
+            else {
+                tileState = TileState.TERRAFORMED;
+            }
             return true;
         }
         else if (IsInDevelopment() && player.playerID == tileOwner)
@@ -50,7 +59,6 @@ public class Tile : MonoBehaviour
 
     public bool ClaimTile(PlayerNumber player)
     {
-
         if (IsUnclaimed()) {
             tileOwner = player;
             tileState = TileState.CLAIMED;
@@ -59,17 +67,26 @@ public class Tile : MonoBehaviour
         else return ClaimEnemyTile(player);
     }
 
+    public int CalculateBonusPoints()
+    {
+        if (terrainType.Equals(TerrainTypes.FERTILE) && tileState.Equals(TileState.TERRAFORMED)){
+            return 2;
+        }
+        else if (terrainType.Equals(TerrainTypes.FERTILE) && tileState.Equals(TileState.TERRAFORMED))
+        {
+            return (int) tileState; //this represents the points from the development stage that were skipped
+        }
+            return 0;
+    }
+
     public bool ClaimEnemyTile(PlayerNumber player)
     {
         if (IsAvailable() && CanDevelop() && tileOwner != player)
         {
-            tileOwner = player;
-            tileState = TileState.CLAIMED;
             return true;
         }
         else return false;
     }
-
 
     public bool IsAvailable()
     {
