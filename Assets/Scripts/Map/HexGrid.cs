@@ -49,7 +49,7 @@ public class HexGrid : MonoBehaviour
             }
             if (instantiateIt) {
                 CreateCraters();
-                CreateWaters();
+                CreateWaters(grid[maxHeight / 2, maxHeight / 2]);
                 instantiatedAdjacency = true;
             }
         }
@@ -114,19 +114,6 @@ public class HexGrid : MonoBehaviour
         }
     }
 
-    private Tile RandomTile() {
-        int x = UnityEngine.Random.Range(0, grid.GetLength(1) - 1);
-        int y = UnityEngine.Random.Range(0, grid.GetLength(0) - 1);
-
-        if (grid[y, x].tileState == TileState.UNAVAILABLE ) {
-            return RandomTile();
-        }
-        else
-        {
-            return grid[y, x];
-        }
-    }
-
     private void CreateCraters()
     {
         foreach (Player player in manager.players)
@@ -140,22 +127,15 @@ public class HexGrid : MonoBehaviour
         }
     }
 
-    private void CreateWaters()
+    private void CreateWaters(Tile fertile)
     {
         for (int i = 0; i < numberOfWaters; i++)
         {
-            Tile water = RandomTile();
+            Tile water = fertile.adjacencyList[UnityEngine.Random.Range(0, fertile.adjacencyList.Count)];
             water.terrainType = TerrainTypes.WATER;
             water.tileOwner = PlayerNumber.NONE;
         }
     }
 
-    private bool ContainsBase(List<Tile> adjacencyList) {
-        bool containsBase = false;
-        foreach (Tile tile in adjacencyList) {
-            containsBase = containsBase | tile.terrainType.Equals(TerrainTypes.BASE);
-        }
-        return containsBase;
-    }
 
 }
