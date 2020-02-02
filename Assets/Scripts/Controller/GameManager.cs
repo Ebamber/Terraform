@@ -75,7 +75,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void TryClaimTile(Tile tile) {
-        endOfTurn = tile.DevelopTile(currentPlayer);
+        if (MoveIsLegal(tile))
+        {
+            Debug.Log("Legal Move Made By Player " + ((int)currentPlayer.playerID + 1));
+            endOfTurn = tile.DevelopTile(currentPlayer);
+            currentPlayer.ownedTiles.Add(tile);
+        }
         if (endOfTurn) {
 
             //handle tile stealing (reclaiming)
@@ -101,9 +106,18 @@ public class GameManager : MonoBehaviour
 
             for (int i = 0; i < players.Count; i++)
             {
-                Debug.Log("player " + i + " has points " + players[i].playerPoints);
+                Debug.Log("player " + (i+1) + " has points " + players[i].playerPoints);
             }
             PlayerTurn();
         }
+    }
+
+    private bool MoveIsLegal(Tile desiredMove) {
+        bool legal = false;
+        foreach (Tile tile in currentPlayer.ownedTiles) {
+            Debug.Log(tile.adjacencyList.Contains(desiredMove));
+            legal = legal || tile.adjacencyList.Contains(desiredMove);
+        }
+        return legal;
     }
 }

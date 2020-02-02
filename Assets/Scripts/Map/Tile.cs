@@ -25,7 +25,7 @@ public class Tile : MonoBehaviour
     {
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
-        tileState = TileState.TERRAFORMED;
+        tileState = TileState.UNCLAIMED;
         terrainType = TerrainTypes.PLAINS;
         this.tileModel = tileModel;
         currentPoints = 0;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TileState { 
     
-    UNAVAILABLE = 0,
+    UNAVAILABLE = -1,
     UNCLAIMED = 0,
     CLAIMED = 1,
     IN_DEVELOPMENT = 1,
