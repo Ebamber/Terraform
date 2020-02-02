@@ -74,7 +74,6 @@ public class HexGrid : MonoBehaviour
         {
             Player.Coordinate coordinates = player.coordinates;
             Tile baseTile = grid[coordinates.x, coordinates.y];
-            Debug.Log(baseTile);
             baseTile.tileState = TileState.UNAVAILABLE;
             baseTile.tileOwner = player.playerID;
             baseTile.terrainType = TerrainTypes.BASE;
@@ -90,7 +89,7 @@ public class HexGrid : MonoBehaviour
         int x = UnityEngine.Random.Range(0, grid.GetLength(1) - 1);
         int y = UnityEngine.Random.Range(0, grid.GetLength(0) - 1);
 
-        if (grid[y, x].tileState == TileState.UNAVAILABLE ) {
+        if (grid[y, x].tileState == TileState.UNAVAILABLE || ContainsBase(grid[y,x].adjacencyList)) {
             return RandomTile();
         }
         else
