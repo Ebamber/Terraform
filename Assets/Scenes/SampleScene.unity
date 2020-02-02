@@ -174,7 +174,6 @@ MonoBehaviour:
   playerID: 2
   playerPoints: 0
   cardType: 0
-  ownedTiles: []
 --- !u!1 &238651684
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,14 +220,13 @@ MonoBehaviour:
   mapConstraintX: 1
   mapConstraintY: 0
   coordinates:
-    x: 0
+    x: 1
     y: 0
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
   playerID: 3
   playerPoints: 0
   cardType: 0
-  ownedTiles: []
 --- !u!1 &665191603
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,13 +274,12 @@ MonoBehaviour:
   mapConstraintY: 0
   coordinates:
     x: 6
-    y: 0
+    y: 2
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
   playerID: 4
   playerPoints: 0
   cardType: 0
-  ownedTiles: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +425,6 @@ MonoBehaviour:
   playerID: 1
   playerPoints: 0
   cardType: 0
-  ownedTiles: []
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,9 +668,6 @@ MonoBehaviour:
   currentHeight: 0
   minHeight: 4
   delta: 0
-  manager: {fileID: 1895274289}
-  numberOfWaters: 4
-  numberOfFertiles: 1
   xOffset: 1.8
   zOffset: 1.55
   defaultTilePrefab: {fileID: 8070630413926836850, guid: 820f94ecb8a2f7a44abfff79f8344eb7,

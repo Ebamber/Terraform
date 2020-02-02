@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
         if (state != GameState.END)
         {
             int index = (int)currentPlayer.playerID + 1;
+            Debug.Log("current player index is " + index);
+            Debug.Log("we have this many players " +  players.Count);
             if (index < players.Count)
             {
                 currentPlayer = players[index];

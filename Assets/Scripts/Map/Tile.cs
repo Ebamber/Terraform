@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
     public PlayerNumber tileOwner;
     public List<Tile> adjacencyList;
     public GameObject tileModel;
+<<<<<<< HEAD
     public int currentPoints;
     public HexGrid grid;
     public int totalPointValue;
@@ -19,17 +20,21 @@ public class Tile : MonoBehaviour
     private void Awake()
     {
         totalPointValue = 0;
+=======
+
+    private void Awake()
+    {
+        
+>>>>>>> parent of 778a026... Changing Terrain Types
     }
 
-    public Tile SetTile(HexGrid grid, GameObject tileModel)
+    public Tile SetTile(GameObject tileModel)
     {
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
-        tileState = TileState.TERRAFORMED;
+        tileState = TileState.UNCLAIMED;
         terrainType = TerrainTypes.PLAINS;
         this.tileModel = tileModel;
-        currentPoints = 0;
-        this.grid = grid;
         return this;
     }
 
@@ -116,12 +121,5 @@ public class Tile : MonoBehaviour
         return tileState.Equals(TileState.IN_DEVELOPMENT);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag.Equals("Tile"))
-        {
-            Tile otherTile = other.GetComponent<Tile>();
-            otherTile.adjacencyList.Add(this);
-        }
-    }
+
 }
