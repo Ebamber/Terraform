@@ -16,9 +16,11 @@ public class Tile : MonoBehaviour
     public int totalPointValue;
     public bool stolen;
     public GameManager manager;
+    public AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         totalPointValue = 0;
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -49,12 +51,14 @@ public class Tile : MonoBehaviour
         {
             if (!terrainType.Equals(TerrainTypes.WATER))
             {
+                audioManager.PlaySound(Sounds.IN_DEVELOPMENT);
                 tileState = TileState.IN_DEVELOPMENT;
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z);
             }
             //special case for water tile
             else
             {
+                audioManager.PlaySound(Sounds.TERRAFORM);
                 tileState = TileState.TERRAFORMED;
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
             }
@@ -62,6 +66,7 @@ public class Tile : MonoBehaviour
         }
         else if (IsInDevelopment() && player.playerID == tileOwner)
         {
+            audioManager.PlaySound(Sounds.TERRAFORM);
             tileState = TileState.TERRAFORMED;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
             isSuccessful = true;
@@ -84,6 +89,7 @@ public class Tile : MonoBehaviour
         if (IsUnclaimed())
         {
             tileOwner = player;
+            audioManager.PlaySound(Sounds.CLAIM);
             tileState = TileState.CLAIMED;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.25f, gameObject.transform.position.z);
             return true;
@@ -116,6 +122,7 @@ public class Tile : MonoBehaviour
         {
             SwitchOwnership(manager.GetPlayer(this.tileOwner), manager.GetPlayer(player));
             tileOwner = player;
+            audioManager.PlaySound(Sounds.CLAIM);
             tileState = TileState.CLAIMED;
             return true;
         }
@@ -129,6 +136,7 @@ public class Tile : MonoBehaviour
             SwitchOwnership(manager.GetPlayer(this.tileOwner), manager.GetPlayer(player));
             tileOwner = player;
             tileState = TileState.CLAIMED;
+            audioManager.PlaySound(Sounds.CLAIM);
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.25f, gameObject.transform.position.z);
             return true;
         }

@@ -26,8 +26,11 @@ public class GameManager : MonoBehaviour
     private PassiveCardManager passiveCardEffectManager;
     private ActiveCardManager activeCardManager;
 
+    public AudioManager audioManager;
+
     void Start() {
 
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         passiveCardEffectManager = GetComponent<PassiveCardManager>();
         activeCardManager = GetComponent<ActiveCardManager>();
         turnCounter = 0;
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
             endOfTurn = false;
         }
         else {
-            //end the game
+            audioManager.PlaySound(Sounds.GAME_END);
         }
     }
 

@@ -13,12 +13,15 @@ public class ActiveCardManager : MonoBehaviour
     public Button seedbombButton;
     public Button sabotageButton;
 
+    public AudioManager audioManager;
+
     public bool bushfire;
     public bool seedbomb;
     public bool sabotage;
 
     private void Start()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         manager = GetComponent<GameManager>();
         SetAllFalse();
     }
@@ -79,17 +82,20 @@ public class ActiveCardManager : MonoBehaviour
 
     public void BushfireEffect() {
         Debug.Log("bushfire");
+        audioManager.PlaySound(Sounds.BUSHFIRE);
         ActiveCard selectedCard = GetCard(manager.currentPlayer.cards, ActiveCardType.BUSHFIRE);
         ActivateEffect(selectedCard);
     }
 
     public void SeedbombEffect() {
         Debug.Log("seedbomb");
+        audioManager.PlaySound(Sounds.SEEDBOMB);
         ActiveCard selectedCard = GetCard(manager.currentPlayer.cards, ActiveCardType.SEEDBOMB);
         ActivateEffect(selectedCard);
     }
     public void SabotageEffect() {
         Debug.Log("sabotage");
+        audioManager.PlaySound(Sounds.SABOTAGE);
         ActiveCard selectedCard = GetCard(manager.currentPlayer.cards, ActiveCardType.SABOTAGE);
         ActivateEffect(selectedCard);
     }
