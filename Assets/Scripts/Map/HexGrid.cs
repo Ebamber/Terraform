@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
-using System.Collections.Generic;
 
 public class HexGrid : MonoBehaviour
 {
@@ -110,13 +107,14 @@ public class HexGrid : MonoBehaviour
             baseTile.tileState = TileState.UNAVAILABLE;
             baseTile.tileOwner = player.playerID;
             baseTile.terrainType = TerrainTypes.BASE;
+            baseTile.ChangeTile();
             baseTile.gameObject.GetComponent<MeshRenderer>().material.color = player.playerColour;
         }
         for (int i = 0; i < numberOfFertiles; i++) {
             Tile fertile = grid[maxHeight / 2, maxHeight / 2];
             fertile.terrainType = TerrainTypes.FERTILE;
-            fertile.tileOwner = PlayerNumber.NONE;
-            fertile.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            fertile.tileOwner = PlayerNumber.NONE; 
+            fertile.ChangeTile();
         }
     }
 
@@ -134,7 +132,7 @@ public class HexGrid : MonoBehaviour
             crater.tileState = TileState.UNAVAILABLE;
             crater.terrainType = TerrainTypes.CRATER;
             crater.tileOwner = PlayerNumber.NONE;
-            crater.gameObject.GetComponent<MeshRenderer>().material.color = Color.black;
+            crater.ChangeTile();
         }
     }
 
@@ -149,8 +147,9 @@ public class HexGrid : MonoBehaviour
             } while (water.terrainType == TerrainTypes.WATER);
             water.terrainType = TerrainTypes.WATER;
             water.tileOwner = PlayerNumber.NONE;
+            water.tileModel = manager.water[0];
             //placeholder
-            water.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+            water.ChangeTile();
         }
     }
 

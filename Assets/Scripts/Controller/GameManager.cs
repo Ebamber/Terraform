@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +15,12 @@ public class GameManager : MonoBehaviour
     public HexGrid hexGrid;
     public bool endOfTurn;
     public int maxTurns;
+
+    public List<GameObject> fertile;
+    public List<GameObject> crater;
+    public List<GameObject> playerBase;
+    public List<GameObject> water;
+    public List<GameObject> plains;
 
     private PassiveCardManager passiveCardEffectManager;
 
@@ -135,5 +140,57 @@ public class GameManager : MonoBehaviour
             Debug.Log(legal);
         }
         return legal;
+    }
+
+    public GameObject ChangePlains(Tile tile)
+    {
+        switch (tile.tileState) {
+            case TileState.IN_DEVELOPMENT: {
+                return plains[1];
+            }
+            case TileState.TERRAFORMED:
+            {
+                return plains[2];
+            }
+            default:
+            {
+                return plains[0];
+            }
+        }
+    }
+
+    public GameObject ChangeWater(Tile tile)
+    {
+        switch (tile.tileState)
+        {
+            case TileState.IN_DEVELOPMENT:
+            case TileState.TERRAFORMED:
+            {
+                return water[1];
+            }
+            default:
+            {
+                return plains[0];
+            }
+        }
+    }
+
+    public GameObject ChangeFertile(Tile tile)
+    {
+        switch (tile.tileState)
+        {
+            case TileState.IN_DEVELOPMENT:
+            {
+                return fertile[1];
+            }
+            case TileState.TERRAFORMED:
+            {
+                return fertile[2];
+            }
+            default:
+            {
+                return fertile[0];
+            }
+        }
     }
 }

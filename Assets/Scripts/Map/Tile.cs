@@ -43,6 +43,7 @@ public class Tile : MonoBehaviour
 
     public bool DevelopTile(Player player)
     {
+        bool isSuccessful;
         GetComponent<MeshRenderer>().material.color = player.playerColour;
         if (IsClaimed() && player.playerID == tileOwner)
         {
@@ -57,18 +58,24 @@ public class Tile : MonoBehaviour
                 tileState = TileState.TERRAFORMED;
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
             }
-            return true;
+            isSuccessful = true;
         }
         else if (IsInDevelopment() && player.playerID == tileOwner)
         {
             tileState = TileState.TERRAFORMED;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
-            return true;
-        } else if (IsTerraformed())
-        {
-            return false;
+            isSuccessful = true;
         }
-        else return ClaimTile(player.playerID);
+        else if (IsTerraformed())
+        {
+            isSuccessful = false;
+        }
+        else
+        {
+            isSuccessful = ClaimTile(player.playerID);
+        }
+        ChangeTile();
+        return isSuccessful;
     }
 
 
@@ -126,6 +133,37 @@ public class Tile : MonoBehaviour
     {
         return (tileState.Equals(TileState.UNCLAIMED) || tileState.Equals(TileState.CLAIMED) || tileState.Equals(TileState.IN_DEVELOPMENT));
 
+    }
+
+    public void ChangeTile() {
+        switch (terrainType) {
+            case TerrainTypes.BASE: {
+                tileModel = manager.playerBase[0];
+                break;
+            }
+            case TerrainTypes.CRATER: {
+                tileModel = manager.crater[0];
+                break;
+            }
+            case TerrainTypes.PLAINS:
+            {
+                tileModel = manager.ChangePlains(this);
+                break;
+            }
+            case TerrainTypes.WATER:
+            {
+                tileModel = manager.ChangeWater(this);
+                break;
+            }
+            case TerrainTypes.FERTILE:
+            {
+                tileModel = manager.ChangeFertile(this);
+                break;
+            }
+        }
+        Transform thisTransform = gameObject.transform;
+        Tile tile = gameObject.GetComponent<Tile>();
+        GameObject newObject = Instantiate(tileModel).AddComponent<Tile>().SetTile(tile);
     }
 
     private bool IsUnclaimed()
