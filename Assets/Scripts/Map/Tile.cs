@@ -11,19 +11,19 @@ public class Tile : MonoBehaviour
     public PlayerNumber tileOwner;
     public List<Tile> adjacencyList;
     public GameObject tileModel;
+    public int currentPoints;
+    public HexGrid grid;
 
-    private void Awake()
-    {
-        
-    }
 
-    public Tile SetTile(GameObject tileModel)
+    public Tile SetTile(HexGrid grid, GameObject tileModel)
     {
         adjacencyList = new List<Tile>();
         tileOwner = PlayerNumber.NONE;
-        tileState = TileState.UNCLAIMED;
+        tileState = TileState.TERRAFORMED;
         terrainType = TerrainTypes.PLAINS;
         this.tileModel = tileModel;
+        currentPoints = 0;
+        this.grid = grid;
         return this;
     }
 
@@ -95,5 +95,12 @@ public class Tile : MonoBehaviour
         return tileState.Equals(TileState.IN_DEVELOPMENT);
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Tile"))
+        {
+            Tile otherTile = other.GetComponent<Tile>();
+            otherTile.adjacencyList.Add(this);
+        }
+    }
 }
