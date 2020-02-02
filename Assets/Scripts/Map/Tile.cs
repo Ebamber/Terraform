@@ -45,27 +45,41 @@ public class Tile : MonoBehaviour
         {
             if (!terrainType.Equals(TerrainTypes.WATER))
             {
+                Debug.Log("DEVELOPMENT");
                 tileState = TileState.IN_DEVELOPMENT;
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z);
             }
             //special case for water tile
-            else {
+            else
+            {
+                Debug.Log("TERRAFORM WATER");
                 tileState = TileState.TERRAFORMED;
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
             }
             return true;
         }
         else if (IsInDevelopment() && player.playerID == tileOwner)
         {
+            Debug.Log("TERRAFORM");
             tileState = TileState.TERRAFORMED;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
             return true;
+        } else if (IsTerraformed())
+        {
+            return false;
         }
         else return ClaimTile(player.playerID);
     }
 
+
     public bool ClaimTile(PlayerNumber player)
     {
-        if (IsUnclaimed()) {
+        if (IsUnclaimed())
+        {
+            Debug.Log("CLAIM");
             tileOwner = player;
             tileState = TileState.CLAIMED;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.25f, gameObject.transform.position.z);
             return true;
         }
         else return ClaimEnemyTile(player);
@@ -87,6 +101,10 @@ public class Tile : MonoBehaviour
     {
         if (IsAvailable() && CanDevelop() && tileOwner != player)
         {
+            Debug.Log("CLAIM ENEMY");
+            tileOwner = player;
+            tileState = TileState.CLAIMED;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.25f, gameObject.transform.position.z);
             return true;
         }
         else return false;
@@ -114,6 +132,10 @@ public class Tile : MonoBehaviour
     private bool IsInDevelopment()
     {
         return tileState.Equals(TileState.IN_DEVELOPMENT);
+    }
+    private bool IsTerraformed()
+    {
+        return tileState.Equals(TileState.TERRAFORMED);
     }
 
     private void OnTriggerEnter(Collider other)

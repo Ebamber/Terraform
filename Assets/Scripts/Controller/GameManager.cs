@@ -31,11 +31,8 @@ public class GameManager : MonoBehaviour
     private void SetupBattle() {
         for (int i = 0; i  < players.Count; i++)
         {
-
-            Player player = players[i];
-            player.playerID = (PlayerNumber) i;
-            player.playerPoints = 0;
-            player.cardType = passiveCardEffectManager.AssignRandomCard(i);
+            players[i].playerPoints = 0;
+            players[i].cardType = passiveCardEffectManager.AssignRandomCard(i);
         }
         turnCounter++;
         Tile[,] grid = hexGrid.grid;
@@ -52,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (state != GameState.END)
         {
+            turnCounter++;
             int index = (int)currentPlayer.playerID + 1;
             if (index < players.Count)
             {
@@ -115,8 +113,8 @@ public class GameManager : MonoBehaviour
     private bool MoveIsLegal(Tile desiredMove) {
         bool legal = false;
         foreach (Tile tile in currentPlayer.ownedTiles) {
-            Debug.Log(tile.adjacencyList.Contains(desiredMove));
-            legal = legal || tile.adjacencyList.Contains(desiredMove);
+            legal = legal || tile.adjacencyList.Contains(desiredMove) && desiredMove.IsAvailable();
+            Debug.Log(legal);
         }
         return legal;
     }

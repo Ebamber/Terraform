@@ -84,7 +84,7 @@ MonoBehaviour:
     y: 3
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 2
+  playerID: 1
   playerPoints: 0
   cardType: 0
   ownedTiles: []
@@ -139,7 +139,7 @@ MonoBehaviour:
     y: 0
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 3
+  playerID: 2
   playerPoints: 0
   cardType: 0
   ownedTiles: []
@@ -194,7 +194,7 @@ MonoBehaviour:
     y: 3
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 1
+  playerID: 0
   playerPoints: 0
   cardType: 0
   ownedTiles: []
@@ -249,7 +249,7 @@ MonoBehaviour:
     y: 0
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
-  playerID: 4
+  playerID: 3
   playerPoints: 0
   cardType: 0
   ownedTiles: []
