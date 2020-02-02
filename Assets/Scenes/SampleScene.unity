@@ -2158,6 +2158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 548780217315209020, guid: 7b0fe11069bc9784caf9446e06af81bc,
         type: 3}
+      propertyPath: playerScores.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 548780217315209020, guid: 7b0fe11069bc9784caf9446e06af81bc,
+        type: 3}
       propertyPath: players.Array.data[0]
       value: 
       objectReference: {fileID: 933299179}
@@ -2241,6 +2246,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7332182000824671218, guid: 3f9246dd9f557b146965ca4c0f432645,
         type: 3}
+    - target: {fileID: 548780217315209020, guid: 7b0fe11069bc9784caf9446e06af81bc,
+        type: 3}
+      propertyPath: playerScores.Array.data[0]
+      value: 
+      objectReference: {fileID: 67893827}
+    - target: {fileID: 548780217315209020, guid: 7b0fe11069bc9784caf9446e06af81bc,
+        type: 3}
+      propertyPath: playerScores.Array.data[1]
+      value: 
+      objectReference: {fileID: 2004617895}
+    - target: {fileID: 548780217315209020, guid: 7b0fe11069bc9784caf9446e06af81bc,
+        type: 3}
+      propertyPath: playerScores.Array.data[2]
+      value: 
+      objectReference: {fileID: 1616852956}
+    - target: {fileID: 548780217315209020, guid: 7b0fe11069bc9784caf9446e06af81bc,
+        type: 3}
+      propertyPath: playerScores.Array.data[3]
+      value: 
+      objectReference: {fileID: 770768330}
     - target: {fileID: 548780217315209022, guid: 7b0fe11069bc9784caf9446e06af81bc,
         type: 3}
       propertyPath: bushfireButton
