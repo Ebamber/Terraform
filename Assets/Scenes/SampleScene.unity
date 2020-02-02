@@ -175,6 +175,7 @@ MonoBehaviour:
   playerPoints: 0
   cardType: 0
   ownedTiles: []
+  playerColour: {r: 1, g: 0, b: 0.37446642, a: 0}
 --- !u!1 &238651684
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,10 +219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c0d7ca8d4eaa643ae17dbac065d838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapConstraintX: 1
+  mapConstraintX: 0
   mapConstraintY: 0
   coordinates:
-    x: 1
+    x: 0
     y: 0
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
@@ -229,6 +230,7 @@ MonoBehaviour:
   playerPoints: 0
   cardType: 0
   ownedTiles: []
+  playerColour: {r: 0.9714079, g: 1, b: 0, a: 0}
 --- !u!1 &665191603
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,17 +274,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c0d7ca8d4eaa643ae17dbac065d838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapConstraintX: 0
+  mapConstraintX: 6
   mapConstraintY: 0
   coordinates:
     x: 6
-    y: 2
+    y: 0
   playerPrefab: {fileID: -927199367670048503, guid: dbae0e714b7b44e4aa4544a2bc37d237,
     type: 3}
   playerID: 4
   playerPoints: 0
   cardType: 0
   ownedTiles: []
+  playerColour: {r: 0.49641037, g: 0, b: 1, a: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +432,7 @@ MonoBehaviour:
   playerPoints: 0
   cardType: 0
   ownedTiles: []
+  playerColour: {r: 1, g: 0.3468553, b: 0, a: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

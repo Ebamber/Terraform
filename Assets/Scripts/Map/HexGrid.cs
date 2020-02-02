@@ -88,9 +88,12 @@ public class HexGrid : MonoBehaviour
                 {
                     grid[z, x].transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
                 }
+                grid[z, x].gameObject.GetComponent<MeshRenderer>().material.color = Color.cyan;
             }
             for (int x = currentHeight; x < maxHeight; x++) {
                 grid[z, x] = Instantiate(emptyGO).AddComponent<Tile>().SetTile(TileState.UNAVAILABLE);
+                grid[z, x].tileOwner = PlayerNumber.NONE;
+                grid[z, x].terrainType = TerrainTypes.CRATER;
                 grid[z, x].name = $"Unreachable-{x},{z}";
             }
             if ((z + 1) % 2 == 0 && z >= maxHeight / 2)
@@ -102,15 +105,18 @@ public class HexGrid : MonoBehaviour
         {
             Player.Coordinate coordinates = player.coordinates;
             Tile baseTile = grid[coordinates.x, coordinates.y];
-            Debug.Log(baseTile);
+            player.ownedTiles.Add(baseTile);
+            Debug.Log(player.playerID);
             baseTile.tileState = TileState.UNAVAILABLE;
             baseTile.tileOwner = player.playerID;
             baseTile.terrainType = TerrainTypes.BASE;
+            baseTile.gameObject.GetComponent<MeshRenderer>().material.color = player.playerColour;
         }
         for (int i = 0; i < numberOfFertiles; i++) {
             Tile fertile = grid[maxHeight / 2, maxHeight / 2];
             fertile.terrainType = TerrainTypes.FERTILE;
             fertile.tileOwner = PlayerNumber.NONE;
+            fertile.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
         }
     }
 
@@ -124,6 +130,7 @@ public class HexGrid : MonoBehaviour
             crater.tileState = TileState.UNAVAILABLE;
             crater.terrainType = TerrainTypes.CRATER;
             crater.tileOwner = PlayerNumber.NONE;
+            crater.gameObject.GetComponent<MeshRenderer>().material.color = Color.black;
         }
     }
 
@@ -134,6 +141,8 @@ public class HexGrid : MonoBehaviour
             Tile water = fertile.adjacencyList[UnityEngine.Random.Range(0, fertile.adjacencyList.Count)];
             water.terrainType = TerrainTypes.WATER;
             water.tileOwner = PlayerNumber.NONE;
+            //placeholder
+            water.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
         }
     }
 

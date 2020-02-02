@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public CardType cardType;
     public List<ActiveCard> cards;
     public List<Tile> ownedTiles;
+    public Color playerColour;
 
     public Player(int number, int mapConstraintX, int mapConstraintY)
     {
