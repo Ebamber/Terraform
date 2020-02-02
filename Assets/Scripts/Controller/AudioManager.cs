@@ -1,10 +1,9 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
     public AudioSource source;
     public List<Sounds> sceneSoundFXTypes;
     public List<AudioClip> sceneSoundFXClips;
@@ -14,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        source = GameObject.FindGameObjectWithTag("SceneFX").GetComponent<AudioSource>();
+        //source = GameObject.FindGameObjectWithTag("SceneFX").GetComponent<AudioSource>();
         sceneSoundFX = new Dictionary<Sounds, AudioClip>();
         if (sceneSoundFXTypes.Count == sceneSoundFXClips.Count) {
             for (int i = 0; i < sceneSoundFXTypes.Count; i++) {
