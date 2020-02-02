@@ -643,6 +643,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5746151705323156656, guid: 02dfcdbe3a4874a48b46b086692fdb91,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5746151705323156657, guid: 02dfcdbe3a4874a48b46b086692fdb91,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -999,10 +1004,25 @@ PrefabInstance:
       propertyPath: playerID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8863254290459383864, guid: 3310c614ddd30d44bb7dd11b80c582a9,
+        type: 3}
+      propertyPath: coordinates.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863254290459383864, guid: 3310c614ddd30d44bb7dd11b80c582a9,
+        type: 3}
+      propertyPath: coordinates.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8863254290664385994, guid: 3310c614ddd30d44bb7dd11b80c582a9,
         type: 3}
       propertyPath: playerID
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863254290664385994, guid: 3310c614ddd30d44bb7dd11b80c582a9,
+        type: 3}
+      propertyPath: coordinates.x
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8863254290791753479, guid: 3310c614ddd30d44bb7dd11b80c582a9,
         type: 3}
@@ -1012,6 +1032,11 @@ PrefabInstance:
     - target: {fileID: 8863254291060514905, guid: 3310c614ddd30d44bb7dd11b80c582a9,
         type: 3}
       propertyPath: playerID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863254291060514905, guid: 3310c614ddd30d44bb7dd11b80c582a9,
+        type: 3}
+      propertyPath: coordinates.y
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameState state;
     public HexGrid hexGrid;
     public bool endOfTurn;
+    public int maxTurns;
 
     private PassiveCardManager passiveCardEffectManager;
 
@@ -49,7 +51,6 @@ public class GameManager : MonoBehaviour
     {
         if (state != GameState.END)
         {
-            turnCounter++;
             int index = (int)currentPlayer.playerID + 1;
             if (index < players.Count)
             {
@@ -58,8 +59,8 @@ public class GameManager : MonoBehaviour
             else
             {
                 currentPlayer = players[0];
+                turnCounter++;
             }
-            Debug.Log("Current player is " + currentPlayer);
             endOfTurn = false;
         }
         else {
@@ -75,7 +76,6 @@ public class GameManager : MonoBehaviour
     public void TryClaimTile(Tile tile) {
         if (MoveIsLegal(tile))
         {
-            Debug.Log("Legal Move Made By Player " + ((int)currentPlayer.playerID + 1));
             endOfTurn = tile.DevelopTile(currentPlayer);
             currentPlayer.ownedTiles.Add(tile);
         }
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
             if (tile.ClaimEnemyTile(currentPlayer.playerID))
             {
                 ///perform changeover
+                ///
                 Debug.Log("points stolen: " + tile.totalPointValue);
                 Player oldPlayer = players[((int)tile.tileOwner)];
                 currentPlayer.playerPoints += tile.totalPointValue;
@@ -107,7 +108,24 @@ public class GameManager : MonoBehaviour
                 Debug.Log("player " + (i+1) + " has points " + players[i].playerPoints);
             }
             PlayerTurn();
+            Debug.Log($"We are on turn {turnCounter}");
+            if (turnCounter == maxTurns) {
+                state = GameState.END;
+            }
         }
+    }
+
+    public Player GetPlayer(PlayerNumber playerID)
+    {
+        Player returnable = null;
+        foreach (Player player in players) {
+            if (player.playerID == playerID)
+            {
+                returnable = player;
+            }
+        }
+        Debug.Log("CLAIM FROM PLAYER " + playerID);
+        return returnable;
     }
 
     private bool MoveIsLegal(Tile desiredMove) {
