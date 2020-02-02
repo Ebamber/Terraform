@@ -49,6 +49,12 @@ public class ActiveCardManager : MonoBehaviour
                 case ActiveCardType.SABOTAGE:
                     {
                         sabotage = true;
+                        if (!manager.TrySabotage())
+                        {
+                            //card effect failed, undo the tile usage
+                            sabotage = false;
+                            card.used = false;
+                        }
                         break;
                     }
                 default:

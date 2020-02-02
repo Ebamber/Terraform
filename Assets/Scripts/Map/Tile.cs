@@ -79,7 +79,7 @@ public class Tile : MonoBehaviour
     }
 
 
-    public bool ClaimTile(PlayerNumber player)
+    private bool ClaimTile(PlayerNumber player)
     {
         if (IsUnclaimed())
         {
@@ -110,15 +110,26 @@ public class Tile : MonoBehaviour
             return 0;
     }
 
-    public bool ClaimEnemyTile(PlayerNumber player)
+    private bool ClaimEnemyTile(PlayerNumber player)
     {
-        SwitchOwnership(manager.GetPlayer(this.tileOwner), manager.GetPlayer(player));
         if (IsAvailable() && CanDevelop() && tileOwner != player)
         {
+            SwitchOwnership(manager.GetPlayer(this.tileOwner), manager.GetPlayer(player));
+            tileOwner = player;
+            tileState = TileState.CLAIMED;
+            return true;
+        }
+        return false;
+    }
+
+    public bool ClaimTerraformedEnemyTile(PlayerNumber player)
+    {
+        if (IsAvailable() && CanDevelop() && tileOwner != player && tileState.Equals(TileState.TERRAFORMED))
+        {
+            SwitchOwnership(manager.GetPlayer(this.tileOwner), manager.GetPlayer(player));
             tileOwner = player;
             tileState = TileState.CLAIMED;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.25f, gameObject.transform.position.z);
-            Debug.Log("CLAIM ENEMY TILE");
             return true;
         }
         else return false;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PassiveCardManager))]
+[RequireComponent(typeof(ActiveCardManager))]
 [RequireComponent(typeof(LandSelector))]
 public class GameManager : MonoBehaviour
 {
@@ -23,10 +24,12 @@ public class GameManager : MonoBehaviour
     public List<GameObject> plains;
 
     private PassiveCardManager passiveCardEffectManager;
+    private ActiveCardManager activeCardManager;
 
     void Start() {
 
         passiveCardEffectManager = GetComponent<PassiveCardManager>();
+        activeCardManager = GetComponent<ActiveCardManager>();
         turnCounter = 0;
         state = GameState.START;
         if ((players.Count < 2) || (players.Count > 4)) {
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
             if (index < players.Count)
             {
                 currentPlayer = players[index];
+                activeCardManager.ShowActiveCardUI(currentPlayer.cards);
             }
             else
             {
@@ -79,20 +83,28 @@ public class GameManager : MonoBehaviour
     }
 
     public void TryClaimTile(Tile tile) {
+        PlayerNumber oldPlayerID = tile.tileOwner;
+
+        if (activeCardManager.bushfire)
+        {
+            if (TileIsTaken(tile))
+            {
+
+            }
+        }
+
         if (MoveIsLegal(tile))
         {
             endOfTurn = tile.DevelopTile(currentPlayer);
-            currentPlayer.ownedTiles.Add(tile);
+            currentPlayer.ownedTiles.Add(tile); //should overwrite the same tile if already added
         }
         if (endOfTurn) {
-
             //handle tile stealing (reclaiming)
-            if (tile.ClaimEnemyTile(currentPlayer.playerID))
+            if (IsStolen(oldPlayerID))
             {
+                Player oldPlayer = players[((int)oldPlayerID)];
+
                 ///perform changeover
-                ///
-                Debug.Log("points stolen: " + tile.totalPointValue);
-                Player oldPlayer = players[((int)tile.tileOwner)];
                 currentPlayer.playerPoints += tile.totalPointValue;
                 oldPlayer.playerPoints -= tile.totalPointValue;
                 tile.tileOwner = currentPlayer.playerID;
@@ -113,7 +125,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("player " + (i+1) + " has points " + players[i].playerPoints);
             }
             PlayerTurn();
-            Debug.Log($"We are on turn {turnCounter}");
+            //Debug.Log($"We are on turn {turnCounter}");
             if (turnCounter == maxTurns) {
                 state = GameState.END;
             }
@@ -129,7 +141,6 @@ public class GameManager : MonoBehaviour
                 returnable = player;
             }
         }
-        Debug.Log("CLAIM FROM PLAYER " + playerID);
         return returnable;
     }
 
@@ -137,11 +148,11 @@ public class GameManager : MonoBehaviour
         bool legal = false;
         foreach (Tile tile in currentPlayer.ownedTiles) {
             legal = legal || tile.adjacencyList.Contains(desiredMove) && desiredMove.IsAvailable();
-            Debug.Log(legal);
+            //Debug.Log(legal);
         }
         return legal;
     }
-
+    
     public GameObject ChangePlains(Tile tile)
     {
         switch (tile.tileState) {
@@ -192,5 +203,37 @@ public class GameManager : MonoBehaviour
                 return fertile[0];
             }
         }
+    }
+
+    private bool TileIsTaken(Tile desiredMove)
+    {
+        bool taken = false;
+        return !desiredMove.tileOwner.Equals(currentPlayer);
+    }
+
+    public bool TrySabotage()
+    {
+
+        return false;
+    }
+
+    private bool IsStolen(PlayerNumber oldPlayerID) {
+        Debug.Log("old id" + oldPlayerID);
+        Debug.Log("my id" + currentPlayer.playerID);
+        bool newClaim = oldPlayerID.Equals(PlayerNumber.NONE);
+        if (!newClaim)
+        {
+            Debug.Log("not new claim!");
+        }
+        bool upgrade = currentPlayer.playerID.Equals(oldPlayerID);
+        if (!upgrade)
+        {
+            Debug.Log("Not an upgrade! What?");
+        }
+        if (!upgrade && !newClaim)
+        {
+            Debug.Log("stolen!");
+        }
+            return (!upgrade && !newClaim);
     }
 }
