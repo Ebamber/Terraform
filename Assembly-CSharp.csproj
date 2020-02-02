@@ -80,11 +80,13 @@
     <Compile Include="Assets\Scripts\Card\Old\RebelCard.cs" />
     <Compile Include="Assets\Scripts\Card\Old\ScientistCard.cs" />
     <Compile Include="Assets\Scripts\Card\PassiveCardManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Controller\GameManager.cs" />
     <Compile Include="Assets\Scripts\Controller\GameState.cs" />
     <Compile Include="Assets\Scripts\Controller\LandSelector.cs" />
     <Compile Include="Assets\Scripts\Controller\Player.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerNumber.cs" />
+    <Compile Include="Assets\Scripts\Controller\Sounds.cs" />
     <Compile Include="Assets\Scripts\Map\HexGrid.cs" />
     <Compile Include="Assets\Scripts\Map\TerrainTypes.cs" />
     <Compile Include="Assets\Scripts\Map\Tile.cs" />

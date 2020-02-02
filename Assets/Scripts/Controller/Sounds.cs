@@ -1,0 +1,10 @@
+﻿public enum Sounds
+{
+    MENU_BUTTON_DOWN,
+    WRONG_PIECE,
+    CORRECT_PIECE,
+    CUSTOMER_LEFT,
+    PUZZLE_OPENED,
+    CUSTOMER_AT_TABLE,
+    CORRECT_PUZZLE
+};
