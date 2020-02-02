@@ -25,9 +25,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> water;
     public List<GameObject> plains;
 
+    public ActiveCardManager activeCardManager;
     private PassiveCardManager passiveCardEffectManager;
-    private ActiveCardManager activeCardManager;
-
     public AudioManager audioManager;
 
     void Start() {
@@ -90,14 +89,6 @@ public class GameManager : MonoBehaviour
     public void TryClaimTile(Tile tile) {
         PlayerNumber oldPlayerID = tile.tileOwner;
 
-        if (activeCardManager.bushfire)
-        {
-            if (TileIsTaken(tile))
-            {
-
-            }
-        }
-
         if (MoveIsLegal(tile))
         {
             endOfTurn = tile.DevelopTile(currentPlayer);
@@ -133,6 +124,7 @@ public class GameManager : MonoBehaviour
             PlayerTurn();
             //Debug.Log($"We are on turn {turnCounter}");
             if (turnCounter == maxTurns || AllTilesClaimed()) {
+                Debug.Log("GAME OVER");
                 state = GameState.END;
             }
         }
@@ -215,6 +207,43 @@ public class GameManager : MonoBehaviour
     {
         bool taken = false;
         return !desiredMove.tileOwner.Equals(currentPlayer);
+    }
+
+    public bool TryBushfire(Tile tile) {
+        List<Tile> playerTiles = currentPlayer.ownedTiles;
+        bool isEnemyTile = true;
+        bool playerOwnsAdjacent = false;
+        foreach (Tile playerTile in playerTiles) {
+            playerOwnsAdjacent = playerOwnsAdjacent || playerTile.adjacencyList.Contains(tile);
+        }
+        if (playerOwnsAdjacent)
+        {
+            Debug.Log("Tile is adjacent");
+            isEnemyTile = isEnemyTile && tile.IsTerraformed() && tile.tileOwner != currentPlayer.playerID;
+            if (isEnemyTile)
+            {
+                Debug.Log("It is an enemy tile");
+                PlayerNumber oldPlayerID = tile.tileOwner;
+                Player oldPlayer = players[((int)oldPlayerID)];
+                ///perform changeover
+                //currentPlayer.playerPoints += tile.totalPointValue;
+                oldPlayer.playerPoints -= tile.totalPointValue;
+                tile.StealAnyEnemyTile(currentPlayer.playerID);
+                tile.totalPointValue = (int)TileState.CLAIMED;
+                tile.GetComponent<MeshRenderer>().material.SetColor("PlayerColour", currentPlayer.playerColour);
+                audioManager.PlaySound(Sounds.BUSHFIRE);
+                tile.gameObject.transform.position = new Vector3(tile.gameObject.transform.position.x, 0.25f, tile.gameObject.transform.position.z);
+                Debug.Log("it worked");
+                PlayerTurn();
+            }
+        }
+        else
+        {
+            //card effect failed, undo the tile usage
+            activeCardManager.sabotage = false;
+            activeCardManager.GetCard(currentPlayer.cards,ActiveCardType.BUSHFIRE).used = false;
+        }
+        return isEnemyTile;
     }
 
     public bool TrySabotage()

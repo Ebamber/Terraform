@@ -146,6 +146,12 @@ public class Tile : MonoBehaviour
         return false;
     }
 
+    public bool Bushfire(Player currentPlayer) {
+        this.tileOwner = currentPlayer.playerID;
+        this.tileState = TileState.CLAIMED;
+        return true;
+    }
+
     public bool ClaimTerraformedEnemyTile(PlayerNumber player)
     {
         if (IsAvailable() && CanDevelop() && tileOwner != player && tileState.Equals(TileState.TERRAFORMED))
@@ -163,6 +169,11 @@ public class Tile : MonoBehaviour
     public bool IsAvailable()
     {
         return !tileState.Equals(TileState.UNAVAILABLE);
+    }
+
+    public bool IsTerraformed()
+    {
+        return tileState.Equals(TileState.TERRAFORMED);
     }
 
     public bool CanDevelop()
@@ -210,10 +221,6 @@ public class Tile : MonoBehaviour
     private bool IsInDevelopment()
     {
         return tileState.Equals(TileState.IN_DEVELOPMENT);
-    }
-    private bool IsTerraformed()
-    {
-        return tileState.Equals(TileState.TERRAFORMED);
     }
 
     private void OnTriggerEnter(Collider other)

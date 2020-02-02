@@ -22,9 +22,18 @@ public class LandSelector : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 if (hit.transform.tag.Equals("Tile")){
-                    manager.TryClaimTile(hit.transform.gameObject.GetComponent<Tile>());
+                    if (!manager.activeCardManager.bushfire)
+                    {
+                        manager.TryClaimTile(hit.transform.gameObject.GetComponent<Tile>());
+                    }
+                    else
+                    {
+                        Debug.Log("We are in Land selector under the BUSHFIRE card");
+                        manager.TryBushfire(hit.transform.gameObject.GetComponent<Tile>());
+                    }
                 }
             }
         }
     }
+
 }

@@ -42,6 +42,7 @@ public class ActiveCardManager : MonoBehaviour
                 case ActiveCardType.BUSHFIRE:
                     {
                         bushfire = true;
+                        Debug.Log("We are in BUSHFIRE Card effect");
                         break;
                     }
                 case ActiveCardType.SEEDBOMB:
@@ -73,7 +74,7 @@ public class ActiveCardManager : MonoBehaviour
     }
 
 
-    private ActiveCard GetCard(List<ActiveCard> cards, ActiveCardType ac)
+    public ActiveCard GetCard(List<ActiveCard> cards, ActiveCardType ac)
     {
         foreach (ActiveCard c in cards)
         {
