@@ -5,7 +5,5 @@ public enum ActiveCardType
 {
     BUSHFIRE,
     MASS_PRODUCTION,
-    RESISTANCE,
-    TAKEOVER,
-    TELEPORT
+    SABOTAGE
 }
