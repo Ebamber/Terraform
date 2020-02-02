@@ -674,6 +674,9 @@ MonoBehaviour:
     type: 3}
   camera: {fileID: 963194225}
   emptyGO: {fileID: 2139603277}
+  manager: {fileID: 1895274289}
+  numberOfFertiles: 0
+  numberOfWaters: 0
 --- !u!4 &2104508681
 Transform:
   m_ObjectHideFlags: 0

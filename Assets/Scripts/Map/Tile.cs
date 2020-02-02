@@ -11,8 +11,6 @@ public class Tile : MonoBehaviour
     public PlayerNumber tileOwner;
     public List<Tile> adjacencyList;
     public GameObject tileModel;
-<<<<<<< HEAD
-<<<<<<< HEAD
     public int currentPoints;
     public HexGrid grid;
     public int totalPointValue;
@@ -21,18 +19,6 @@ public class Tile : MonoBehaviour
     private void Awake()
     {
         totalPointValue = 0;
-=======
-
-    private void Awake()
-    {
-        
->>>>>>> parent of 778a026... Changing Terrain Types
-=======
-
-    private void Awake()
-    {
-        
->>>>>>> parent of 7cc6b4b... Tile claiming and stealing, terrain bonuses
     }
 
     public Tile SetTile(GameObject tileModel)

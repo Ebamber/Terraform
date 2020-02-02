@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class HexGrid : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class HexGrid : MonoBehaviour
     public GameObject camera;
     private GameObject midpoint;
     public GameObject emptyGO;
+
+    public GameManager manager;
+
+    public int numberOfFertiles;
+    public int numberOfWaters;
 
     void Awake()
     {
@@ -69,7 +75,6 @@ public class HexGrid : MonoBehaviour
                 counter--;
             }
         }
-<<<<<<< HEAD
         foreach (Player player in manager.players)
         {
             Player.Coordinate coordinates = player.coordinates;
@@ -89,7 +94,7 @@ public class HexGrid : MonoBehaviour
         int x = UnityEngine.Random.Range(0, grid.GetLength(1) - 1);
         int y = UnityEngine.Random.Range(0, grid.GetLength(0) - 1);
 
-        if (grid[y, x].tileState == TileState.UNAVAILABLE || ContainsBase(grid[y,x].adjacencyList)) {
+        if (grid[y, x].tileState == TileState.UNAVAILABLE) {
             return RandomTile();
         }
         else
@@ -127,8 +132,6 @@ public class HexGrid : MonoBehaviour
             containsBase = containsBase | tile.terrainType.Equals(TerrainTypes.BASE);
         }
         return containsBase;
-=======
->>>>>>> parent of 778a026... Changing Terrain Types
     }
 
 }
