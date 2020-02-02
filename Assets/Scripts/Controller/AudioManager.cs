@@ -14,7 +14,6 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        source = GameObject.FindGameObjectWithTag("SceneFX").GetComponent<AudioSource>();
         sceneSoundFX = new Dictionary<Sounds, AudioClip>();
         if (sceneSoundFXTypes.Count == sceneSoundFXClips.Count) {
             for (int i = 0; i < sceneSoundFXTypes.Count; i++) {
