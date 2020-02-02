@@ -19,12 +19,17 @@ public class Player : MonoBehaviour
     public List<Tile> ownedTiles;
     public Color playerColour;
 
-    public Player(int number, int mapConstraintX, int mapConstraintY)
+    private void Start()
     {
         cards = new List<ActiveCard>();
         cards.Add(new ActiveCard(ActiveCardType.BUSHFIRE, this));
         cards.Add(new ActiveCard(ActiveCardType.SEEDBOMB, this));
         cards.Add(new ActiveCard(ActiveCardType.SABOTAGE, this));
+    }
+
+    public Player(int number, int mapConstraintX, int mapConstraintY)
+    {
+       
         this.mapConstraintX = mapConstraintX;
         this.mapConstraintY = mapConstraintY;
         switch (number)
