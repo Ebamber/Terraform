@@ -85,7 +85,7 @@ public class HexGrid : MonoBehaviour
                 {
                     grid[z, x].transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
                 }
-                grid[z, x].gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+                grid[z, x].gameObject.GetComponent<MeshRenderer>().material.SetColor("PlayerColour",Color.gray);
             }
             for (int x = currentHeight; x < maxHeight; x++) {
                 grid[z, x] = Instantiate(emptyGO).AddComponent<Tile>().SetTile(TileState.UNAVAILABLE);
@@ -108,12 +108,13 @@ public class HexGrid : MonoBehaviour
             baseTile.tileOwner = player.playerID;
             baseTile.terrainType = TerrainTypes.BASE;
             baseTile.ChangeTile();
-            baseTile.gameObject.GetComponent<MeshRenderer>().material.color = player.playerColour;
+            baseTile.gameObject.GetComponent<MeshRenderer>().material.SetColor("PlayerColour", player.playerColour);
         }
         for (int i = 0; i < numberOfFertiles; i++) {
             Tile fertile = grid[maxHeight / 2, maxHeight / 2];
             fertile.terrainType = TerrainTypes.FERTILE;
-            fertile.tileOwner = PlayerNumber.NONE; 
+            fertile.tileOwner = PlayerNumber.NONE;
+            fertile.gameObject.GetComponent<MeshRenderer>().material.SetColor("PlayerColour", Color.green);
             fertile.ChangeTile();
         }
     }
@@ -132,6 +133,7 @@ public class HexGrid : MonoBehaviour
             crater.tileState = TileState.UNAVAILABLE;
             crater.terrainType = TerrainTypes.CRATER;
             crater.tileOwner = PlayerNumber.NONE;
+            crater.gameObject.GetComponent<MeshRenderer>().material.SetColor("PlayerColour", Color.black);
             crater.ChangeTile();
         }
     }
@@ -148,6 +150,7 @@ public class HexGrid : MonoBehaviour
             water.terrainType = TerrainTypes.WATER;
             water.tileOwner = PlayerNumber.NONE;
             water.tileModel = manager.water[0];
+            water.gameObject.GetComponent<MeshRenderer>().material.SetColor("PlayerColour", Color.cyan);
             //placeholder
             water.ChangeTile();
         }

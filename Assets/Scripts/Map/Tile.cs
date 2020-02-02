@@ -172,9 +172,9 @@ public class Tile : MonoBehaviour
                 break;
             }
         }
-        Transform thisTransform = gameObject.transform;
-        Tile tile = gameObject.GetComponent<Tile>();
-        GameObject newObject = Instantiate(tileModel).AddComponent<Tile>().SetTile(tile);
+        //Transform thisTransform = gameObject.transform;
+        //Tile tile = gameObject.GetComponent<Tile>();
+        //GameObject newObject = Instantiate(tileModel).AddComponent<Tile>().SetTile(tile);
     }
 
     private bool IsUnclaimed()
