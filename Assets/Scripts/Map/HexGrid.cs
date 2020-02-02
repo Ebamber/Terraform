@@ -88,7 +88,7 @@ public class HexGrid : MonoBehaviour
                 {
                     grid[z, x].transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
                 }
-                grid[z, x].gameObject.GetComponent<MeshRenderer>().material.color = Color.cyan;
+                grid[z, x].gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
             }
             for (int x = currentHeight; x < maxHeight; x++) {
                 grid[z, x] = Instantiate(emptyGO).AddComponent<Tile>().SetTile(TileState.UNAVAILABLE);
