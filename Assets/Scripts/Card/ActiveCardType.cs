@@ -4,6 +4,6 @@ using System.Collections;
 public enum ActiveCardType
 {
     BUSHFIRE,
-    MASS_PRODUCTION,
+    SEEDBOMB,
     SABOTAGE
 }

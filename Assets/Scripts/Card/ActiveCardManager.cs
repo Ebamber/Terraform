@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class ActiveCardManager: MonoBehaviour
+[RequireComponent(typeof(GameManager))]
+public class ActiveCardManager : MonoBehaviour
 {
+    public GameManager manager;
+
+    public Button bushfireButton;
+    public Button seedbombButton;
+    public Button sabotageButton;
+
     public void ActivateEffect(ActiveCard card)
     {
         if (!card.used)
@@ -14,9 +22,9 @@ public class ActiveCardManager: MonoBehaviour
                         BushfireEffect();
                         break;
                     }
-                case ActiveCardType.MASS_PRODUCTION:
+                case ActiveCardType.SEEDBOMB:
                     {
-                        MassProductionEffect();
+                        SeedbombEffect();
                         break;
                     }
                 case ActiveCardType.SABOTAGE:
@@ -31,7 +39,40 @@ public class ActiveCardManager: MonoBehaviour
         }
     }
 
-    public void BushfireEffect() { }
-    public void MassProductionEffect() { }
-    public void SabotageEffect() { }
+    public void BushfireEffect() {
+        Debug.Log("bushfire");
+    }
+    public void SeedbombEffect() {
+        Debug.Log("seedbomb");
+    }
+    public void SabotageEffect() {
+        Debug.Log("sabotage");
+    }
+
+    public void ShowActiveCardUI(ActiveCard[] cards)
+    {
+        foreach (ActiveCard card in cards)
+        {
+            switch (card.cardType)
+            {
+                case ActiveCardType.BUSHFIRE:
+                    {
+                        bushfireButton.interactable = card.used;
+                        break;                      
+                    }
+                case ActiveCardType.SEEDBOMB:
+                    {
+                        seedbombButton.interactable = card.used;
+                        break;
+                    }
+                case ActiveCardType.SABOTAGE:
+                    {
+                        sabotageButton.interactable = card.used;
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+    }
 }
