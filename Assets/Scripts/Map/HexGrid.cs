@@ -88,7 +88,7 @@ public class HexGrid : MonoBehaviour
                 {
                     grid[z, x].transform.position = new Vector3((x * xOffset + (xOffset / 2)) - xOffset * counter, 0, z * zOffset);
                 }
-                grid[z, x].gameObject.GetComponent<MeshRenderer>().material.color = Color.cyan;
+                grid[z, x].gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
             }
             for (int x = currentHeight; x < maxHeight; x++) {
                 grid[z, x] = Instantiate(emptyGO).AddComponent<Tile>().SetTile(TileState.UNAVAILABLE);
@@ -126,7 +126,10 @@ public class HexGrid : MonoBehaviour
         {
             Player.Coordinate coordinates = player.coordinates;
             Tile baseTile = grid[coordinates.x, coordinates.y];
-            Tile crater = baseTile.adjacencyList[UnityEngine.Random.Range(0, baseTile.adjacencyList.Count)];
+            Tile crater;
+            do {
+                crater = baseTile.adjacencyList[UnityEngine.Random.Range(0, baseTile.adjacencyList.Count)];
+            } while (crater.terrainType.Equals(TerrainTypes.CRATER));
             crater.tileState = TileState.UNAVAILABLE;
             crater.terrainType = TerrainTypes.CRATER;
             crater.tileOwner = PlayerNumber.NONE;
@@ -138,7 +141,10 @@ public class HexGrid : MonoBehaviour
     {
         for (int i = 0; i < numberOfWaters; i++)
         {
-            Tile water = fertile.adjacencyList[UnityEngine.Random.Range(0, fertile.adjacencyList.Count)];
+            Tile water;
+            do {
+                water = fertile.adjacencyList[UnityEngine.Random.Range(0, fertile.adjacencyList.Count)];
+            } while (water.terrainType.Equals(TerrainTypes.WATER));
             water.terrainType = TerrainTypes.WATER;
             water.tileOwner = PlayerNumber.NONE;
             //placeholder
