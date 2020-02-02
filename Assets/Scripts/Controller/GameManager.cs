@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PassiveCardManager))]
 [RequireComponent(typeof(ActiveCardManager))]
@@ -8,6 +9,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public List<Player> players;
+    public List<Text> playerScores;
 
     public int turnCounter;
 
@@ -126,10 +128,11 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < players.Count; i++)
             {
                 Debug.Log("player " + (i+1) + " has points " + players[i].playerPoints);
+                playerScores[i].text = players[i].playerPoints.ToString();
             }
             PlayerTurn();
             //Debug.Log($"We are on turn {turnCounter}");
-            if (turnCounter == maxTurns) {
+            if (turnCounter == maxTurns || AllTilesClaimed()) {
                 state = GameState.END;
             }
         }
@@ -273,5 +276,13 @@ public class GameManager : MonoBehaviour
         bool upgrade = currentPlayer.playerID.Equals(oldPlayerID);
        
         return (!upgrade && !newClaim);
+    }
+
+    private bool AllTilesClaimed() {
+        bool isGameOver = true;
+        foreach (Tile tile in hexGrid.grid) {
+            isGameOver = isGameOver && tile.tileState == TileState.CLAIMED;
+        }
+        return isGameOver;
     }
 }
