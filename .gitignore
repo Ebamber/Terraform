@@ -10,3 +10,6 @@ obj/*
 Temp/*
 Assembly-CSharp.csproj
 *.json
+*.pdb
+*.dll
+*.pdb
