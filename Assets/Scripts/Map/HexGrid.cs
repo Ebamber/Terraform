@@ -126,7 +126,11 @@ public class HexGrid : MonoBehaviour
         {
             Player.Coordinate coordinates = player.coordinates;
             Tile baseTile = grid[coordinates.x, coordinates.y];
-            Tile crater = baseTile.adjacencyList[UnityEngine.Random.Range(0, baseTile.adjacencyList.Count)];
+            Tile crater;
+            do
+            {
+                crater = baseTile.adjacencyList[UnityEngine.Random.Range(0, baseTile.adjacencyList.Count)];
+            } while (crater.terrainType == TerrainTypes.CRATER);
             crater.tileState = TileState.UNAVAILABLE;
             crater.terrainType = TerrainTypes.CRATER;
             crater.tileOwner = PlayerNumber.NONE;
@@ -138,7 +142,11 @@ public class HexGrid : MonoBehaviour
     {
         for (int i = 0; i < numberOfWaters; i++)
         {
-            Tile water = fertile.adjacencyList[UnityEngine.Random.Range(0, fertile.adjacencyList.Count)];
+            Tile water;
+            do
+            {
+                water = fertile.adjacencyList[UnityEngine.Random.Range(0, fertile.adjacencyList.Count)];
+            } while (water.terrainType == TerrainTypes.WATER);
             water.terrainType = TerrainTypes.WATER;
             water.tileOwner = PlayerNumber.NONE;
             //placeholder
