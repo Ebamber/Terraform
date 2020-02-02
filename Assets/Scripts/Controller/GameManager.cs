@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
             currentPlayer.playerPoints += tile.totalPointValue;
             oldPlayer.playerPoints -= tile.totalPointValue;
             tile.tileOwner = currentPlayer.playerID;
-
+            tile.GetComponent<MeshRenderer>().material.SetColor("PlayerColour", currentPlayer.playerColour);
             audioManager.PlaySound(Sounds.SABOTAGE);
         }
 

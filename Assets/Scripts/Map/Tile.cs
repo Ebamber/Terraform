@@ -45,8 +45,7 @@ public class Tile : MonoBehaviour
 
     public bool DevelopTile(Player player)
     {
-        bool isSuccessful;
-        GetComponent<MeshRenderer>().material.color = player.playerColour;
+        bool isSuccessful;      
         if (IsClaimed() && player.playerID == tileOwner)
         {
             if (!terrainType.Equals(TerrainTypes.WATER))
@@ -80,6 +79,10 @@ public class Tile : MonoBehaviour
             isSuccessful = ClaimTile(player.playerID);
         }
         ChangeTile();
+        if (isSuccessful)
+        {
+            GetComponent<MeshRenderer>().material.SetColor("PlayerColour", player.playerColour);
+        }
         return isSuccessful;
     }
 
@@ -102,6 +105,7 @@ public class Tile : MonoBehaviour
         Debug.Log($"From {oldPlayer} to {currentPlayer}");
         oldPlayer.ownedTiles.Remove(this);
         currentPlayer.ownedTiles.Add(this);
+        GetComponent<MeshRenderer>().material.SetColor("PlayerColour", currentPlayer.playerColour);
     }
 
     public int CalculateBonusPoints()
