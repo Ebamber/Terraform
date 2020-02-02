@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void PlayerTurn()
+    public void PlayerTurn()
     {
         if (state != GameState.END)
         {
@@ -216,7 +216,49 @@ public class GameManager : MonoBehaviour
 
     public bool TrySabotage()
     {
+        List<Tile> allEnemyTiles = new List<Tile>();
+        foreach (Player player in players)
+        {
+            
+            if (player.playerID != currentPlayer.playerID)
+            {
+                foreach (Tile tile in player.ownedTiles)
+                {
+                    if (!tile.terrainType.Equals(TerrainTypes.BASE)){
+                        allEnemyTiles.Add(tile);
+                    }                           
+                }
+                  
+            }
+        }
+        Debug.Log("allEnemyTiles.Count is " + allEnemyTiles.Count);
+            
+        bool sabotage = false;
+        PlayerNumber oldPlayerID = currentPlayer.playerID;
+        int index = 0;
+        if (allEnemyTiles.Count > 0)
+        {
+            System.Random random = new System.Random();
+            index = random.Next(allEnemyTiles.Count);
+            oldPlayerID = allEnemyTiles[index].tileOwner;
+            sabotage = allEnemyTiles[index].StealAnyEnemyTile(currentPlayer.playerID);
+        }
+        
+        if (sabotage)
+        {
+            Debug.Log("sabotage worked");
 
+            Player oldPlayer = players[((int)oldPlayerID)];
+            Tile tile = allEnemyTiles[index];
+            ///perform changeover
+            currentPlayer.playerPoints += tile.totalPointValue;
+            oldPlayer.playerPoints -= tile.totalPointValue;
+            tile.tileOwner = currentPlayer.playerID;
+
+            audioManager.PlaySound(Sounds.SABOTAGE);
+        }
+
+        return sabotage;
         return false;
     }
 
@@ -229,14 +271,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("not new claim!");
         }
         bool upgrade = currentPlayer.playerID.Equals(oldPlayerID);
-        if (!upgrade)
-        {
-            Debug.Log("Not an upgrade! What?");
-        }
-        if (!upgrade && !newClaim)
-        {
-            Debug.Log("stolen!");
-        }
-            return (!upgrade && !newClaim);
+       
+        return (!upgrade && !newClaim);
     }
 }

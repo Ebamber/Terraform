@@ -58,6 +58,11 @@ public class ActiveCardManager : MonoBehaviour
                             sabotage = false;
                             card.used = false;
                         }
+                        else
+                        {
+                            Debug.Log("it worked");
+                            manager.PlayerTurn();
+                        }
                         break;
                     }
                 default:
@@ -95,7 +100,6 @@ public class ActiveCardManager : MonoBehaviour
     }
     public void SabotageEffect() {
         Debug.Log("sabotage");
-        audioManager.PlaySound(Sounds.SABOTAGE);
         ActiveCard selectedCard = GetCard(manager.currentPlayer.cards, ActiveCardType.SABOTAGE);
         ActivateEffect(selectedCard);
     }

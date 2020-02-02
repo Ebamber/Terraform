@@ -129,6 +129,19 @@ public class Tile : MonoBehaviour
         return false;
     }
 
+    public bool StealAnyEnemyTile(PlayerNumber player)
+    {
+        if (IsAvailable() && tileOwner != player)
+        {
+            SwitchOwnership(manager.GetPlayer(this.tileOwner), manager.GetPlayer(player));
+            tileOwner = player;
+            audioManager.PlaySound(Sounds.CLAIM);
+            tileState = TileState.CLAIMED;
+            return true;
+        }
+        return false;
+    }
+
     public bool ClaimTerraformedEnemyTile(PlayerNumber player)
     {
         if (IsAvailable() && CanDevelop() && tileOwner != player && tileState.Equals(TileState.TERRAFORMED))
